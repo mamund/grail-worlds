@@ -1,0 +1,13 @@
+{
+  "name": "grail-world-message-classification",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "grail validate --config ./config",
+    "start": "grail run --config ./config --output json"
+  },
+  "dependencies": {
+    "@mamund/grail": "0.2.0"
+  }
+}

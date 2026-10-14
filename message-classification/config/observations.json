@@ -1,0 +1,30 @@
+[
+  {
+    "invocation": {
+      "id": "inv-001",
+      "affordance": "classifyCustomerMessage",
+      "timestamp": "2026-10-14T14:16:43.974Z",
+      "command": "node",
+      "args": [
+        "./capabilities/classify-message.mjs"
+      ],
+      "inputs": {
+        "message": "I was charged twice for my order."
+      }
+    },
+    "timing": {
+      "durationMs": 9512.079992
+    },
+    "response": {
+      "exitCode": 0,
+      "stdout": {
+        "category": "billing"
+      },
+      "stderr": ""
+    },
+    "outputs": {
+      "category": "billing"
+    },
+    "result": "SUCCESS"
+  }
+]
