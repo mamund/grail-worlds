@@ -1,0 +1,11 @@
+{
+  "name": "grail-world-failure-recovery",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@mamund/grail": "0.2.0"
+  }
+}

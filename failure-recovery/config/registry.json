@@ -1,0 +1,246 @@
+{
+  "startOnboarding": {
+    "id": "aff-start-onboarding",
+    "action": "startOnboarding",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "name": "$inputs.name"
+    },
+    "effects": [
+      "onboardingStarted"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/onboarding.js",
+      "function": "startOnboarding",
+      "outputs": {
+        "onboardingId": {
+          "from": "result",
+          "path": "onboardingId"
+        }
+      }
+    }
+  },
+  "createCustomerProfile": {
+    "id": "aff-create-customer-profile",
+    "action": "createCustomerProfile",
+    "type": "task",
+    "preconditions": [
+      "onboardingStarted"
+    ],
+    "inputs": {
+      "onboardingId": "$outputs.latest.onboardingId"
+    },
+    "effects": [
+      "customerProfileCreated"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/onboarding.js",
+      "function": "createCustomerProfile",
+      "outputs": {
+        "customerId": {
+          "from": "result",
+          "path": "customerId"
+        }
+      }
+    }
+  },
+  "setCustomerDetails": {
+    "id": "aff-set-customer-details",
+    "action": "setCustomerDetails",
+    "type": "task",
+    "preconditions": [
+      "customerProfileCreated"
+    ],
+    "inputs": {
+      "customerId": "$outputs.latest.customerId",
+      "email": "$inputs.email",
+      "phone": "$inputs.phone",
+      "address": "$inputs.address"
+    },
+    "effects": [
+      "customerEmailSet",
+      "customerPhoneNumberSet",
+      "customerAddressSet"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/onboarding.js",
+      "function": "setCustomerDetails",
+      "outputs": {
+        "emailVerificationId": {
+          "from": "result",
+          "path": "emailVerificationId"
+        },
+        "phoneVerificationId": {
+          "from": "result",
+          "path": "phoneVerificationId"
+        }
+      }
+    }
+  },
+  "verifyCustomerEmail": {
+    "id": "aff-verify-customer-email",
+    "action": "verifyCustomerEmail",
+    "type": "task",
+    "preconditions": [
+      "customerEmailSet"
+    ],
+    "inputs": {
+      "customerId": "$outputs.latest.customerId",
+      "emailVerificationId": "$outputs.latest.emailVerificationId"
+    },
+    "effects": [
+      "customerEmailVerified"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/onboarding.js",
+      "function": "verifyCustomerEmail",
+      "outputs": {
+        "verifiedEmail": {
+          "from": "result",
+          "path": "verifiedEmail"
+        }
+      }
+    }
+  },
+  "verifyCustomerPhone": {
+    "id": "aff-verify-customer-phone",
+    "action": "verifyCustomerPhone",
+    "type": "task",
+    "preconditions": [
+      "customerPhoneNumberSet"
+    ],
+    "inputs": {
+      "customerId": "$outputs.latest.customerId",
+      "phoneVerificationId": "$outputs.latest.phoneVerificationId"
+    },
+    "effects": [
+      "customerPhoneVerified"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/onboarding.js",
+      "function": "verifyCustomerPhone",
+      "outputs": {
+        "verifiedPhone": {
+          "from": "result",
+          "path": "verifiedPhone"
+        }
+      }
+    }
+  },
+  "acceptTerms": {
+    "id": "aff-accept-terms",
+    "action": "acceptTerms",
+    "type": "task",
+    "preconditions": [
+      "customerProfileCreated"
+    ],
+    "inputs": {
+      "customerId": "$outputs.latest.customerId",
+      "termsVersion": "$inputs.termsVersion"
+    },
+    "effects": [
+      "termsAccepted"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/onboarding.js",
+      "function": "acceptTerms",
+      "outputs": {
+        "acceptedTermsVersion": {
+          "from": "result",
+          "path": "acceptedTermsVersion"
+        }
+      }
+    }
+  },
+  "onboardCustomer": {
+    "id": "aff-onboard-customer",
+    "action": "onboardCustomer",
+    "type": "task",
+    "preconditions": [
+      "customerEmailVerified",
+      "customerPhoneVerified",
+      "customerAddressSet",
+      "termsAccepted"
+    ],
+    "inputs": {
+      "onboardingId": "$outputs.latest.onboardingId",
+      "customerId": "$outputs.latest.customerId"
+    },
+    "effects": [
+      "customerOnboarded"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/onboarding.js",
+      "function": "onboardCustomer",
+      "outputs": {
+        "customerId": {
+          "from": "result",
+          "path": "customerId"
+        },
+        "onboardingId": {
+          "from": "result",
+          "path": "onboardingId"
+        },
+        "status": {
+          "from": "result",
+          "path": "status"
+        },
+        "customerName": {
+          "from": "result",
+          "path": "customerName"
+        }
+      }
+    }
+  },
+  "verifyEmailUnavailable": {
+    "id": "aff-verifyemailunavailable",
+    "action": "verifyEmailUnavailable",
+    "type": "task",
+    "preconditions": [
+      "customerEmailSet"
+    ],
+    "inputs": {
+      "customerId": "$outputs.latest.customerId",
+      "emailVerificationId": "$outputs.latest.emailVerificationId"
+    },
+    "effects": [
+      "customerEmailVerified"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/onboarding.js",
+      "function": "verifyEmailUnavailable"
+    }
+  },
+  "onboardCustomerUnavailable": {
+    "id": "aff-onboardcustomerunavailable",
+    "action": "onboardCustomerUnavailable",
+    "type": "task",
+    "preconditions": [
+      "customerEmailVerified",
+      "customerPhoneVerified",
+      "customerAddressSet",
+      "termsAccepted"
+    ],
+    "inputs": {
+      "onboardingId": "$outputs.latest.onboardingId",
+      "customerId": "$outputs.latest.customerId"
+    },
+    "effects": [
+      "customerOnboarded"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/onboarding.js",
+      "function": "onboardCustomerUnavailable"
+    }
+  }
+}

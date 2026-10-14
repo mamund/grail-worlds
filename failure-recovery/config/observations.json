@@ -1,0 +1,206 @@
+[
+  {
+    "invocation": {
+      "id": "inv-001",
+      "affordance": "startOnboarding",
+      "timestamp": "2026-10-14T14:11:36.765Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "startOnboarding",
+      "inputs": {
+        "name": "Ada Lovelace"
+      }
+    },
+    "timing": {
+      "durationMs": 1.685492
+    },
+    "response": {
+      "result": {
+        "onboardingId": "ONB-100"
+      }
+    },
+    "outputs": {
+      "onboardingId": "ONB-100"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-002",
+      "affordance": "createCustomerProfile",
+      "timestamp": "2026-10-14T14:11:36.767Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "createCustomerProfile",
+      "inputs": {
+        "onboardingId": "ONB-100"
+      }
+    },
+    "timing": {
+      "durationMs": 0.246752
+    },
+    "response": {
+      "result": {
+        "customerId": "CUS-100"
+      }
+    },
+    "outputs": {
+      "customerId": "CUS-100"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-003",
+      "affordance": "setCustomerDetails",
+      "timestamp": "2026-10-14T14:11:37.292Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "setCustomerDetails",
+      "inputs": {
+        "customerId": "CUS-100",
+        "email": "ada@example.test",
+        "phone": "+1-555-0100",
+        "address": "12 Example Lane"
+      }
+    },
+    "timing": {
+      "durationMs": 0.53612
+    },
+    "response": {
+      "result": {
+        "emailVerificationId": "EMAIL-100",
+        "phoneVerificationId": "PHONE-100"
+      }
+    },
+    "outputs": {
+      "emailVerificationId": "EMAIL-100",
+      "phoneVerificationId": "PHONE-100"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-004",
+      "affordance": "verifyCustomerPhone",
+      "timestamp": "2026-10-14T14:11:37.304Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "verifyCustomerPhone",
+      "inputs": {
+        "customerId": "CUS-100",
+        "phoneVerificationId": "PHONE-100"
+      }
+    },
+    "timing": {
+      "durationMs": 0.773114
+    },
+    "response": {
+      "result": {
+        "verifiedPhone": "+1-555-0100"
+      }
+    },
+    "outputs": {
+      "verifiedPhone": "+1-555-0100"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-005",
+      "affordance": "acceptTerms",
+      "timestamp": "2026-10-14T14:11:37.307Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "acceptTerms",
+      "inputs": {
+        "customerId": "CUS-100",
+        "termsVersion": "2026-01"
+      }
+    },
+    "timing": {
+      "durationMs": 0.783652
+    },
+    "response": {
+      "result": {
+        "acceptedTermsVersion": "2026-01"
+      }
+    },
+    "outputs": {
+      "acceptedTermsVersion": "2026-01"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-006",
+      "affordance": "verifyCustomerEmail",
+      "timestamp": "2026-10-14T14:11:37.310Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "verifyCustomerEmail",
+      "inputs": {
+        "customerId": "CUS-100",
+        "emailVerificationId": "EMAIL-100"
+      }
+    },
+    "timing": {
+      "durationMs": 0.363714
+    },
+    "response": {
+      "result": {
+        "verifiedEmail": "ada@example.test"
+      }
+    },
+    "outputs": {
+      "verifiedEmail": "ada@example.test"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-007",
+      "affordance": "onboardCustomerUnavailable",
+      "timestamp": "2026-10-14T14:11:37.310Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "onboardCustomerUnavailable",
+      "inputs": {
+        "onboardingId": "ONB-100",
+        "customerId": "CUS-100"
+      }
+    },
+    "timing": {
+      "durationMs": 0.498063
+    },
+    "response": {
+      "error": "Primary onboarding provider is unavailable"
+    },
+    "outputs": {},
+    "result": "FAIL"
+  },
+  {
+    "invocation": {
+      "id": "inv-008",
+      "affordance": "onboardCustomer",
+      "timestamp": "2026-10-14T14:11:37.311Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "onboardCustomer",
+      "inputs": {
+        "onboardingId": "ONB-100",
+        "customerId": "CUS-100"
+      }
+    },
+    "timing": {
+      "durationMs": 0.361943
+    },
+    "response": {
+      "result": {
+        "customerId": "CUS-100",
+        "onboardingId": "ONB-100",
+        "status": "onboarded",
+        "customerName": "Ada Lovelace"
+      }
+    },
+    "outputs": {
+      "customerId": "CUS-100",
+      "onboardingId": "ONB-100",
+      "status": "onboarded",
+      "customerName": "Ada Lovelace"
+    },
+    "result": "SUCCESS"
+  }
+]
