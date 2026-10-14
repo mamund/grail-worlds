@@ -1,0 +1,11 @@
+{
+  "onboardingStarted": false,
+  "customerProfileCreated": false,
+  "customerEmailSet": false,
+  "customerPhoneNumberSet": false,
+  "customerAddressSet": false,
+  "customerEmailVerified": false,
+  "customerPhoneVerified": false,
+  "termsAccepted": false,
+  "customerOnboarded": false
+}

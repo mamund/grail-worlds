@@ -1,0 +1,185 @@
+[
+  {
+    "invocation": {
+      "id": "inv-001",
+      "affordance": "startOnboarding",
+      "timestamp": "2026-10-14T14:08:14.966Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "startOnboarding",
+      "inputs": {
+        "name": "Ada Lovelace"
+      }
+    },
+    "timing": {
+      "durationMs": 1.368342
+    },
+    "response": {
+      "result": {
+        "onboardingId": "ONB-100"
+      }
+    },
+    "outputs": {
+      "onboardingId": "ONB-100"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-002",
+      "affordance": "createCustomerProfile",
+      "timestamp": "2026-10-14T14:08:14.968Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "createCustomerProfile",
+      "inputs": {
+        "onboardingId": "ONB-100"
+      }
+    },
+    "timing": {
+      "durationMs": 0.19999
+    },
+    "response": {
+      "result": {
+        "customerId": "CUS-100"
+      }
+    },
+    "outputs": {
+      "customerId": "CUS-100"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-003",
+      "affordance": "setCustomerDetails",
+      "timestamp": "2026-10-14T14:08:14.988Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "setCustomerDetails",
+      "inputs": {
+        "customerId": "CUS-100",
+        "email": "ada@example.test",
+        "phone": "+1-555-0100",
+        "address": "12 Example Lane"
+      }
+    },
+    "timing": {
+      "durationMs": 0.3099
+    },
+    "response": {
+      "result": {
+        "emailVerificationId": "EMAIL-100",
+        "phoneVerificationId": "PHONE-100"
+      }
+    },
+    "outputs": {
+      "emailVerificationId": "EMAIL-100",
+      "phoneVerificationId": "PHONE-100"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-004",
+      "affordance": "verifyCustomerEmail",
+      "timestamp": "2026-10-14T14:08:15.007Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "verifyCustomerEmail",
+      "inputs": {
+        "customerId": "CUS-100",
+        "emailVerificationId": "EMAIL-100"
+      }
+    },
+    "timing": {
+      "durationMs": 0.292474
+    },
+    "response": {
+      "result": {
+        "verifiedEmail": "ada@example.test"
+      }
+    },
+    "outputs": {
+      "verifiedEmail": "ada@example.test"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-005",
+      "affordance": "acceptTerms",
+      "timestamp": "2026-10-14T14:08:15.008Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "acceptTerms",
+      "inputs": {
+        "customerId": "CUS-100",
+        "termsVersion": "2026-01"
+      }
+    },
+    "timing": {
+      "durationMs": 0.372365
+    },
+    "response": {
+      "result": {
+        "acceptedTermsVersion": "2026-01"
+      }
+    },
+    "outputs": {
+      "acceptedTermsVersion": "2026-01"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-006",
+      "affordance": "verifyCustomerPhone",
+      "timestamp": "2026-10-14T14:08:15.009Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "verifyCustomerPhone",
+      "inputs": {
+        "customerId": "CUS-100",
+        "phoneVerificationId": "PHONE-100"
+      }
+    },
+    "timing": {
+      "durationMs": 0.271695
+    },
+    "response": {
+      "result": {
+        "verifiedPhone": "+1-555-0100"
+      }
+    },
+    "outputs": {
+      "verifiedPhone": "+1-555-0100"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-007",
+      "affordance": "onboardCustomer",
+      "timestamp": "2026-10-14T14:08:15.010Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "onboardCustomer",
+      "inputs": {
+        "onboardingId": "ONB-100",
+        "customerId": "CUS-100"
+      }
+    },
+    "timing": {
+      "durationMs": 0.398367
+    },
+    "response": {
+      "result": {
+        "customerId": "CUS-100",
+        "onboardingId": "ONB-100",
+        "status": "onboarded",
+        "customerName": "Ada Lovelace"
+      }
+    },
+    "outputs": {
+      "customerId": "CUS-100",
+      "onboardingId": "ONB-100",
+      "status": "onboarded",
+      "customerName": "Ada Lovelace"
+    },
+    "result": "SUCCESS"
+  }
+]
