@@ -19,6 +19,7 @@ This repository collects self-contained worlds you can run, inspect, and adapt. 
 | [`message-classification`](./message-classification/) | LLM-backed and rules-based classification through interchangeable affordances | Node.js; Ollama and a local model for the LLM path |
 | [`customer-support`](./customer-support/) | Customer support response preparation, mixed deterministic and LLM capabilities, and repeated pursuits from a batch script | Node.js; Ollama and configured local models |
 | [`interactive-refund`](./interactive-refund/) | Human-in-the-loop STDIO capability and a completed refund determination, including zero-dollar outcomes | Node.js; interactive terminal |
+| [`purchase-management`](./purchase-management/) | Purchase review and processing across HTTP, Node, and interactive STDIO bindings; approved, rejected, and deferred outcomes | Node.js; local HTTP service (included); interactive terminal |
 
 The Ollama examples may have additional model and setup requirements. Consult their READMEs before running them.
 
@@ -41,7 +42,7 @@ npx grail validate --config ./config
 npx grail run --config ./config --output=json
 ```
 
-Some worlds require a local service, an Ollama installation, or an interactive terminal. Each world documents its setup and expected result.
+Some worlds require a local service, an Ollama installation, or an interactive terminal. Each world documents its setup and expected result. In `purchase-management`, one pursuit handles one purchase request; run another pursuit to process another request.
 
 ## How a world is organized
 
@@ -71,7 +72,7 @@ GRAIL's world state tracks the conditions relevant to pursuit. Domain-specific v
 
 ## Suggested learning path
 
-Start with `hello-grail`, then `customer-lookup`, followed by `customer-onboarding`. Explore `failure-recovery` to see how alternative affordances support continued pursuit after a failure. The remaining examples show how GRAIL integrates local models, larger support scenarios, and human interaction.
+Start with `hello-grail`, then `customer-lookup`, followed by `customer-onboarding`. Explore `failure-recovery` to see how alternative affordances support continued pursuit after a failure. The remaining examples show how GRAIL integrates local models, larger support scenarios, and human interaction. Finish with `purchase-management` for a domain-oriented example that combines multiple binding types and records approved, rejected, or deferred purchase decisions.
 
 ## Using these examples
 
