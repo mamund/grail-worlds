@@ -1,0 +1,15 @@
+{
+  "name": "grail-world-customer-support",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Standalone GRAIL customer support world",
+  "scripts": {
+    "validate": "grail validate --config ./config",
+    "start": "grail run --config ./config --output=summary",
+    "inspect": "grail run --config ./config --output=json",
+    "batch": "bash ./scripts/process-requests.sh"
+  },
+  "dependencies": {
+    "@mamund/grail": "0.2.0"
+  }
+}

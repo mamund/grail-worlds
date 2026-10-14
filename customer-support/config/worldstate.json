@@ -1,0 +1,10 @@
+{
+  "requestClassified": false,
+  "customerDetailsExtracted": false,
+  "customerLocated": false,
+  "supportInformationRetrieved": false,
+  "responseDrafted": false,
+  "responseValidated": false,
+  "customerResponseQueued": false,
+  "supportRepAssigned": false
+}

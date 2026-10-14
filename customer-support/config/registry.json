@@ -1,0 +1,273 @@
+{
+  "classifyRequest": {
+    "id": "aff-classify-request",
+    "action": "classifyRequest",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "message": "$inputs.message"
+    },
+    "effects": [
+      "requestClassified"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "node",
+      "args": [
+        "./capabilities/classify-request.mjs"
+      ],
+      "outputs": {
+        "category": {
+          "from": "stdout",
+          "path": "category"
+        }
+      }
+    }
+  },
+  "classifyWithRules": {
+    "id": "aff-classify-with-rules",
+    "action": "classifyWithRules",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "message": "$inputs.message"
+    },
+    "effects": [
+      "requestClassified"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "node",
+      "args": [
+        "./capabilities/classify-rules.mjs"
+      ],
+      "outputs": {
+        "category": {
+          "from": "stdout",
+          "path": "category"
+        }
+      }
+    }
+  },
+  "extractDetails": {
+    "id": "aff-extract-details",
+    "action": "extractDetails",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "message": "$inputs.message"
+    },
+    "effects": [
+      "customerDetailsExtracted"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "node",
+      "args": [
+        "./capabilities/extract-details.mjs"
+      ],
+      "outputs": {
+        "summary": {
+          "from": "stdout",
+          "path": "summary"
+        },
+        "issue": {
+          "from": "stdout",
+          "path": "issue"
+        }
+      }
+    }
+  },
+  "lookupCustomer": {
+    "id": "aff-lookup-customer",
+    "action": "lookupCustomer",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "customerId": "$inputs.customerId"
+    },
+    "effects": [
+      "customerLocated"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "node",
+      "args": [
+        "./capabilities/lookup-customer.mjs"
+      ],
+      "outputs": {
+        "customerName": {
+          "from": "stdout",
+          "path": "customerName"
+        },
+        "customerStatus": {
+          "from": "stdout",
+          "path": "customerStatus"
+        }
+      }
+    }
+  },
+  "retrieveInformation": {
+    "id": "aff-retrieve-information",
+    "action": "retrieveInformation",
+    "type": "task",
+    "preconditions": [
+      "requestClassified"
+    ],
+    "inputs": {
+      "category": "$outputs.latest.category"
+    },
+    "effects": [
+      "supportInformationRetrieved"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "node",
+      "args": [
+        "./capabilities/retrieve-information.mjs"
+      ],
+      "outputs": {
+        "policy": {
+          "from": "stdout",
+          "path": "policy"
+        },
+        "policyId": {
+          "from": "stdout",
+          "path": "policyId"
+        }
+      }
+    }
+  },
+  "draftResponse": {
+    "id": "aff-draft-response",
+    "action": "draftResponse",
+    "type": "task",
+    "preconditions": [
+      "customerDetailsExtracted",
+      "customerLocated",
+      "supportInformationRetrieved"
+    ],
+    "inputs": {
+      "message": "$inputs.message",
+      "customerName": "$outputs.latest.customerName",
+      "summary": "$outputs.latest.summary",
+      "policy": "$outputs.latest.policy"
+    },
+    "effects": [
+      "responseDrafted"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "node",
+      "args": [
+        "./capabilities/draft-response.mjs"
+      ],
+      "outputs": {
+        "draft": {
+          "from": "stdout",
+          "path": "draft"
+        }
+      }
+    }
+  },
+  "validateResponse": {
+    "id": "aff-validate-response",
+    "action": "validateResponse",
+    "type": "task",
+    "preconditions": [
+      "responseDrafted",
+      "supportInformationRetrieved"
+    ],
+    "inputs": {
+      "draft": "$outputs.latest.draft",
+      "policy": "$outputs.latest.policy"
+    },
+    "effects": [
+      "responseValidated"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "node",
+      "args": [
+        "./capabilities/validate-response.mjs"
+      ],
+      "outputs": {
+        "validatedResponse": {
+          "from": "stdout",
+          "path": "validatedResponse"
+        }
+      }
+    }
+  },
+  "queueResponse": {
+    "id": "aff-queue-response",
+    "action": "queueResponse",
+    "type": "task",
+    "preconditions": [
+      "responseValidated",
+      "customerLocated",
+      "requestClassified",
+      "supportInformationRetrieved",
+      "supportRepAssigned"
+    ],
+    "inputs": {
+      "response": "$outputs.latest.validatedResponse",
+      "customerId": "$inputs.customerId",
+      "customerName": "$outputs.latest.customerName",
+      "category": "$outputs.latest.category",
+      "policyId": "$outputs.latest.policyId",
+      "supportRep": "$outputs.latest.supportRep"
+    },
+    "effects": [
+      "customerResponseQueued"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "node",
+      "args": [
+        "./capabilities/queue-response.mjs"
+      ],
+      "outputs": {
+        "messageId": {
+          "from": "stdout",
+          "path": "messageId"
+        },
+        "status": {
+          "from": "stdout",
+          "path": "status"
+        },
+        "file": {
+          "from": "stdout",
+          "path": "file"
+        }
+      }
+    }
+  },
+  "assignSupportRep": {
+    "id": "aff-assign-support-rep",
+    "action": "assignSupportRep",
+    "type": "task",
+    "preconditions": [
+      "requestClassified"
+    ],
+    "inputs": {
+      "category": "$outputs.latest.category"
+    },
+    "effects": [
+      "supportRepAssigned"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "node",
+      "args": [
+        "./capabilities/assign-support-rep.mjs"
+      ],
+      "outputs": {
+        "supportRep": {
+          "from": "stdout",
+          "path": "supportRep"
+        }
+      }
+    }
+  }
+}

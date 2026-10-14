@@ -1,0 +1,14 @@
+{
+  "billing": {
+    "id": "BILL-01",
+    "text": "For a possible duplicate charge, acknowledge the concern and explain that billing will investigate. Do not promise a refund or claim that a refund has been issued."
+  },
+  "support": {
+    "id": "SUP-01",
+    "text": "Ask for the error message and relevant troubleshooting details. Do not claim that an issue has been fixed."
+  },
+  "sales": {
+    "id": "SALES-01",
+    "text": "Offer to connect the customer with sales for current pricing. Do not invent prices or availability."
+  }
+}
