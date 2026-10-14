@@ -1,0 +1,34 @@
+[
+  {
+    "invocation": {
+      "id": "inv-001",
+      "affordance": "Determine refund amount and reason",
+      "timestamp": "2026-10-14T14:26:09.802Z",
+      "command": "node",
+      "args": [
+        "./capabilities/determine-refund.mjs"
+      ],
+      "inputs": {
+        "ticketId": "T-1042",
+        "issue": "Product arrived damaged",
+        "orderTotal": 89
+      }
+    },
+    "timing": {
+      "durationMs": 4512.472275
+    },
+    "response": {
+      "exitCode": 0,
+      "stdout": {
+        "refundAmount": 50,
+        "refundReason": "DAMAGED_PRODUCT"
+      },
+      "stderr": "\nGRAIL customer support — refund determination\nTicket: T-1042\nIssue: Product arrived damaged\nOrder total: $89.00\nRefund amount (0 to 89.00): 50\nReason codes:\n  1. DAMAGED_PRODUCT\n  2. LATE_DELIVERY\n  3. SERVICE_FAILURE\n  4. GOODWILL\nSelect reason [1-4]: 1\n"
+    },
+    "outputs": {
+      "refundAmount": 50,
+      "refundReason": "DAMAGED_PRODUCT"
+    },
+    "result": "SUCCESS"
+  }
+]

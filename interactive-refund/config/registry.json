@@ -1,0 +1,34 @@
+{
+  "determineRefund": {
+    "id": "determineRefund",
+    "action": "Determine refund amount and reason",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "ticketId": "$inputs.ticketId",
+      "issue": "$inputs.issue",
+      "orderTotal": "$inputs.orderTotal"
+    },
+    "effects": [
+      "refundDetermined"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "node",
+      "args": [
+        "./capabilities/determine-refund.mjs"
+      ],
+      "interactive": true,
+      "outputs": {
+        "refundAmount": {
+          "from": "stdout",
+          "path": "refundAmount"
+        },
+        "refundReason": {
+          "from": "stdout",
+          "path": "refundReason"
+        }
+      }
+    }
+  }
+}
