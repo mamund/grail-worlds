@@ -1,0 +1,44 @@
+[
+  {
+    "invocation": {
+      "id": "inv-001",
+      "affordance": "learnName",
+      "timestamp": "2026-10-14T13:50:42.316Z",
+      "module": "./capabilities/greeting.js",
+      "function": "learnName",
+      "inputs": {
+        "name": "GRAIL"
+      }
+    },
+    "response": {
+      "result": {
+        "name": "GRAIL"
+      }
+    },
+    "outputs": {
+      "name": "GRAIL"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-002",
+      "affordance": "greet",
+      "timestamp": "2026-10-14T13:50:42.317Z",
+      "module": "./capabilities/greeting.js",
+      "function": "greet",
+      "inputs": {
+        "name": "GRAIL"
+      }
+    },
+    "response": {
+      "result": {
+        "message": "Hello, GRAIL!"
+      }
+    },
+    "outputs": {
+      "message": "Hello, GRAIL!"
+    },
+    "result": "SUCCESS"
+  }
+]

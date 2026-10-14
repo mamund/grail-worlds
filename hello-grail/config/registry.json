@@ -1,0 +1,30 @@
+{
+  "learnName": {
+    "id": "aff-learn-name",
+    "action": "learnName",
+    "type": "task",
+    "preconditions": [],
+    "inputs": { "name": "$inputs.name" },
+    "effects": ["nameKnown"],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/greeting.js",
+      "function": "learnName",
+      "outputs": { "name": { "from": "result", "path": "name" } }
+    }
+  },
+  "greet": {
+    "id": "aff-greet",
+    "action": "greet",
+    "type": "task",
+    "preconditions": ["nameKnown"],
+    "inputs": { "name": "$outputs.latest.name" },
+    "effects": ["greeted"],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/greeting.js",
+      "function": "greet",
+      "outputs": { "message": { "from": "result", "path": "message" } }
+    }
+  }
+}
