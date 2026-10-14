@@ -1,0 +1,38 @@
+{
+  "lookupCustomer": {
+    "id": "aff-lookup-customer",
+    "action": "lookupCustomer",
+    "type": "task",
+    "preconditions": [],
+    "inputs": { "customerId": "$inputs.customerId" },
+    "effects": ["customerLoaded"],
+    "binding": {
+      "protocol": "http",
+      "method": "GET",
+      "url": "http://localhost:3001/customers/{customerId}",
+      "parameters": { "customerId": { "in": "path" } },
+      "outputs": {
+        "accountId": { "from": "body", "path": "accountId" },
+        "customerName": { "from": "body", "path": "name" }
+      }
+    }
+  },
+  "lookupAccount": {
+    "id": "aff-lookup-account",
+    "action": "lookupAccount",
+    "type": "task",
+    "preconditions": ["customerLoaded"],
+    "inputs": { "accountId": "$outputs.latest.accountId" },
+    "effects": ["accountLoaded"],
+    "binding": {
+      "protocol": "http",
+      "method": "GET",
+      "url": "http://localhost:3001/accounts/{accountId}",
+      "parameters": { "accountId": { "in": "path" } },
+      "outputs": {
+        "accountStatus": { "from": "body", "path": "status" },
+        "accountBalance": { "from": "body", "path": "balance" }
+      }
+    }
+  }
+}

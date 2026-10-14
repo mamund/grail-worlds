@@ -1,0 +1,8 @@
+{
+  "name": "grail-world-customer-lookup",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": { "service": "node service/server.js" },
+  "dependencies": { "@mamund/grail": "0.2.0" }
+}

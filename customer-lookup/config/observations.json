@@ -1,0 +1,74 @@
+[
+  {
+    "invocation": {
+      "id": "inv-001",
+      "affordance": "lookupCustomer",
+      "timestamp": "2026-10-14T14:02:05.072Z",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3001/customers/C100",
+        "headers": {},
+        "body": null
+      }
+    },
+    "timing": {
+      "durationMs": 57.938917
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "date": "Wed, 14 Oct 2026 14:02:05 GMT",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked"
+      },
+      "body": {
+        "id": "C100",
+        "name": "Ada Lovelace",
+        "accountId": "A200"
+      }
+    },
+    "outputs": {
+      "accountId": "A200",
+      "customerName": "Ada Lovelace"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-002",
+      "affordance": "lookupAccount",
+      "timestamp": "2026-10-14T14:02:05.131Z",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3001/accounts/A200",
+        "headers": {},
+        "body": null
+      }
+    },
+    "timing": {
+      "durationMs": 5.238265
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "date": "Wed, 14 Oct 2026 14:02:05 GMT",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked"
+      },
+      "body": {
+        "id": "A200",
+        "status": "active",
+        "balance": 125.5
+      }
+    },
+    "outputs": {
+      "accountStatus": "active",
+      "accountBalance": 125.5
+    },
+    "result": "SUCCESS"
+  }
+]
