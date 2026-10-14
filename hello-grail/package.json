@@ -3,5 +3,5 @@
   "private": true,
   "type": "module",
   "engines": { "node": ">=22" },
-  "dependencies": { "@mamund/grail": "0.1.0" }
+  "dependencies": { "@mamund/grail": "0.2.0" }
 }
