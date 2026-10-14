@@ -1,0 +1,4 @@
+INVOICE
+Invoice Number: INV-1001
+Vendor: Northwind Supplies
+Amount: 245.00

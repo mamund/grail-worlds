@@ -1,0 +1,150 @@
+[
+  {
+    "invocation": {
+      "id": "inv-001",
+      "affordance": "loadDocument",
+      "timestamp": "2026-10-14T15:47:16.114Z",
+      "command": "python3",
+      "args": [
+        "./capabilities/loadDocument.py"
+      ],
+      "inputs": {
+        "documentPath": "samples/invoice.txt"
+      }
+    },
+    "timing": {
+      "durationMs": 33.011653
+    },
+    "response": {
+      "exitCode": 0,
+      "stdout": {
+        "text": "INVOICE\nInvoice Number: INV-1001\nVendor: Northwind Supplies\nAmount: 245.00\n",
+        "path": "samples/invoice.txt"
+      },
+      "stderr": ""
+    },
+    "outputs": {
+      "documentText": "INVOICE\nInvoice Number: INV-1001\nVendor: Northwind Supplies\nAmount: 245.00\n",
+      "documentPath": "samples/invoice.txt"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-002",
+      "affordance": "classifyDocument",
+      "timestamp": "2026-10-14T15:47:16.148Z",
+      "command": "python3",
+      "args": [
+        "./capabilities/classifyDocument.py"
+      ],
+      "inputs": {
+        "documentText": "INVOICE\nInvoice Number: INV-1001\nVendor: Northwind Supplies\nAmount: 245.00\n"
+      }
+    },
+    "timing": {
+      "durationMs": 29.354415
+    },
+    "response": {
+      "exitCode": 0,
+      "stdout": {
+        "classification": "INVOICE"
+      },
+      "stderr": ""
+    },
+    "outputs": {
+      "classification": "INVOICE"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-003",
+      "affordance": "extractMetadata",
+      "timestamp": "2026-10-14T15:47:16.177Z",
+      "command": "python3",
+      "args": [
+        "./capabilities/extractMetadata.py"
+      ],
+      "inputs": {
+        "documentText": "INVOICE\nInvoice Number: INV-1001\nVendor: Northwind Supplies\nAmount: 245.00\n"
+      }
+    },
+    "timing": {
+      "durationMs": 29.16665
+    },
+    "response": {
+      "exitCode": 0,
+      "stdout": {
+        "metadata": {
+          "invoice_number": "INV-1001",
+          "vendor": "Northwind Supplies",
+          "amount": "245.00"
+        }
+      },
+      "stderr": ""
+    },
+    "outputs": {
+      "metadata": {
+        "invoice_number": "INV-1001",
+        "vendor": "Northwind Supplies",
+        "amount": "245.00"
+      }
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-004",
+      "affordance": "processDocument",
+      "timestamp": "2026-10-14T15:47:16.207Z",
+      "command": "python3",
+      "args": [
+        "./capabilities/processDocument.py"
+      ],
+      "inputs": {
+        "documentPath": "samples/invoice.txt",
+        "classification": "INVOICE",
+        "metadata": {
+          "invoice_number": "INV-1001",
+          "vendor": "Northwind Supplies",
+          "amount": "245.00"
+        }
+      }
+    },
+    "timing": {
+      "durationMs": 33.295443
+    },
+    "response": {
+      "exitCode": 0,
+      "stdout": {
+        "disposition": "queued-for-accounts-payable",
+        "receipt": {
+          "source": "samples/invoice.txt",
+          "classification": "INVOICE",
+          "disposition": "queued-for-accounts-payable",
+          "metadata": {
+            "invoice_number": "INV-1001",
+            "vendor": "Northwind Supplies",
+            "amount": "245.00"
+          }
+        }
+      },
+      "stderr": ""
+    },
+    "outputs": {
+      "receipt": {
+        "source": "samples/invoice.txt",
+        "classification": "INVOICE",
+        "disposition": "queued-for-accounts-payable",
+        "metadata": {
+          "invoice_number": "INV-1001",
+          "vendor": "Northwind Supplies",
+          "amount": "245.00"
+        }
+      },
+      "disposition": "queued-for-accounts-payable"
+    },
+    "result": "SUCCESS"
+  }
+]

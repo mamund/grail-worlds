@@ -1,0 +1,148 @@
+{
+  "loadDocument": {
+    "id": "aff-loadDocument",
+    "action": "loadDocument",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "documentPath": "$inputs.documentPath"
+    },
+    "effects": [
+      "documentLoaded"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "python3",
+      "args": [
+        "./capabilities/loadDocument.py"
+      ],
+      "outputs": {
+        "documentText": {
+          "from": "stdout",
+          "path": "text"
+        },
+        "documentPath": {
+          "from": "stdout",
+          "path": "path"
+        }
+      }
+    }
+  },
+  "loadDocumentFallback": {
+    "id": "aff-loadDocumentFallback",
+    "action": "loadDocumentFallback",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "documentPath": "$inputs.documentPath"
+    },
+    "effects": [
+      "documentLoaded"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "python3",
+      "args": [
+        "./capabilities/loadDocumentFallback.py"
+      ],
+      "outputs": {
+        "documentText": {
+          "from": "stdout",
+          "path": "text"
+        },
+        "documentPath": {
+          "from": "stdout",
+          "path": "path"
+        }
+      }
+    }
+  },
+  "classifyDocument": {
+    "id": "aff-classifyDocument",
+    "action": "classifyDocument",
+    "type": "task",
+    "preconditions": [
+      "documentLoaded"
+    ],
+    "inputs": {
+      "documentText": "$outputs.latest.documentText"
+    },
+    "effects": [
+      "documentClassified"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "python3",
+      "args": [
+        "./capabilities/classifyDocument.py"
+      ],
+      "outputs": {
+        "classification": {
+          "from": "stdout",
+          "path": "classification"
+        }
+      }
+    }
+  },
+  "extractMetadata": {
+    "id": "aff-extractMetadata",
+    "action": "extractMetadata",
+    "type": "task",
+    "preconditions": [
+      "documentLoaded"
+    ],
+    "inputs": {
+      "documentText": "$outputs.latest.documentText"
+    },
+    "effects": [
+      "metadataExtracted"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "python3",
+      "args": [
+        "./capabilities/extractMetadata.py"
+      ],
+      "outputs": {
+        "metadata": {
+          "from": "stdout",
+          "path": "metadata"
+        }
+      }
+    }
+  },
+  "processDocument": {
+    "id": "aff-processDocument",
+    "action": "processDocument",
+    "type": "task",
+    "preconditions": [
+      "documentClassified",
+      "metadataExtracted"
+    ],
+    "inputs": {
+      "documentPath": "$inputs.documentPath",
+      "classification": "$outputs.latest.classification",
+      "metadata": "$outputs.latest.metadata"
+    },
+    "effects": [
+      "documentProcessed"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "python3",
+      "args": [
+        "./capabilities/processDocument.py"
+      ],
+      "outputs": {
+        "receipt": {
+          "from": "stdout",
+          "path": "receipt"
+        },
+        "disposition": {
+          "from": "stdout",
+          "path": "disposition"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,3 @@
+LEGACY: INVOICE
+Invoice Number: OLD-17
+Vendor: Archive Co
