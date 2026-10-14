@@ -1,0 +1,17 @@
+{
+  "name": "grail-world-purchase-management",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "service": "node service/server.mjs",
+    "reset": "node scripts/reset.mjs",
+    "validate": "grail validate --config ./config",
+    "start": "grail run --config ./config --output=json"
+  },
+  "dependencies": {
+    "@mamund/grail": "0.2.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "P1042": {
+    "id": "P1042",
+    "department": "Engineering",
+    "description": "Replacement development workstation",
+    "amount": 2450.0
+  },
+  "P1043": {
+    "id": "P1043",
+    "department": "Operations",
+    "description": "Office supplies",
+    "amount": 125.5
+  }
+}

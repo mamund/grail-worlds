@@ -1,0 +1,160 @@
+{
+  "loadPurchaseRequest": {
+    "id": "loadPurchaseRequest",
+    "action": "loadPurchaseRequest",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "purchaseId": "$inputs.purchaseId"
+    },
+    "effects": [
+      "purchaseLoaded"
+    ],
+    "binding": {
+      "protocol": "http",
+      "method": "GET",
+      "url": "http://127.0.0.1:3002/purchases/{purchaseId}",
+      "parameters": {
+        "purchaseId": {
+          "in": "path"
+        }
+      },
+      "outputs": {
+        "purchaseId": {
+          "from": "body",
+          "path": "id"
+        },
+        "amount": {
+          "from": "body",
+          "path": "amount"
+        },
+        "description": {
+          "from": "body",
+          "path": "description"
+        },
+        "department": {
+          "from": "body",
+          "path": "department"
+        }
+      }
+    }
+  },
+  "checkPurchasePolicy": {
+    "id": "checkPurchasePolicy",
+    "action": "checkPurchasePolicy",
+    "type": "task",
+    "preconditions": [
+      "purchaseLoaded"
+    ],
+    "inputs": {
+      "purchaseId": "$outputs.latest.purchaseId"
+    },
+    "effects": [
+      "policyChecked"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/purchase.mjs",
+      "function": "checkPurchasePolicy",
+      "outputs": {
+        "policyGuidance": {
+          "from": "result",
+          "path": "guidance"
+        }
+      }
+    }
+  },
+  "reviewPurchase": {
+    "id": "reviewPurchase",
+    "action": "reviewPurchase",
+    "type": "task",
+    "preconditions": [
+      "purchaseLoaded",
+      "policyChecked"
+    ],
+    "inputs": {
+      "purchaseId": "$outputs.latest.purchaseId",
+      "policyGuidance": "$outputs.latest.policyGuidance"
+    },
+    "effects": [
+      "purchaseReviewed"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "node",
+      "args": [
+        "./capabilities/review.mjs"
+      ],
+      "interactive": true,
+      "outputs": {
+        "reviewStatus": {
+          "from": "stdout",
+          "path": "reviewStatus"
+        },
+        "reviewNote": {
+          "from": "stdout",
+          "path": "reviewNote"
+        }
+      }
+    }
+  },
+  "processPurchase": {
+    "id": "processPurchase",
+    "action": "processPurchase",
+    "type": "task",
+    "preconditions": [
+      "purchaseReviewed"
+    ],
+    "inputs": {
+      "purchaseId": "$outputs.latest.purchaseId"
+    },
+    "effects": [
+      "purchaseProcessed"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/purchase.mjs",
+      "function": "processPurchase",
+      "outputs": {
+        "processingStatus": {
+          "from": "result",
+          "path": "processingStatus"
+        }
+      }
+    }
+  },
+  "recordPurchaseResult": {
+    "id": "recordPurchaseResult",
+    "action": "recordPurchaseResult",
+    "type": "task",
+    "preconditions": [
+      "purchaseProcessed"
+    ],
+    "inputs": {
+      "purchaseId": "$outputs.latest.purchaseId"
+    },
+    "effects": [
+      "purchaseRecorded"
+    ],
+    "binding": {
+      "protocol": "http",
+      "method": "POST",
+      "url": "http://127.0.0.1:3002/purchases/{purchaseId}/record",
+      "parameters": {
+        "purchaseId": {
+          "in": "path"
+        }
+      },
+      "outputs": {
+        "recordId": {
+          "from": "body",
+          "path": "recordId"
+        },
+        "recordedStatus": {
+          "from": "body",
+          "path": "status"
+        }
+      }
+    }
+  }
+}
