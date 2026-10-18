@@ -2,27 +2,35 @@
 
 This parent GRAIL world demonstrates **recursive composition using the existing Node binding and GRAIL public API**. The `verifyCustomer` affordance invokes a standalone child `customer-verification` world, receives its domain result, and makes that result available to the parent's activation capability. No native GRAIL binding is required.
 
-The experiment began from the working stage 3 onboarding world and extends the stage 4 nested-pursuit demonstration to include failure propagation and negative domain outcomes.
+The example builds on customer onboarding to demonstrate nested pursuits, failure propagation, and negative domain outcomes.
 
 ## Directory structure
 
 - `config/`: parent registry, worldstate, inputs, and goal
 - `capabilities/create-customer.mjs`: creates the customer
 - `capabilities/prepare-account.mjs`: prepares an account
-- `capabilities/verify-customer.mjs`: Node adapter that invokes the child GRAIL world through the public API
+- `capabilities/verify-customer.mjs`: Node adapter that invokes the child world using `runGrailWorld()`
 - `capabilities/activate-customer.mjs`: interprets verification status and returns an activation decision
 - `child-world/customer-verification/`: independently runnable verification world, with its own `config/`, capabilities, and README
 - `api-run.js`: parent-world launcher using the GRAIL public API, useful for inspecting observations
 
 ## Prerequisites
 
-Node 22+ and GRAIL 0.2.x. From this parent-world directory, install dependencies:
+Node.js 22+ and a version of `@mamund/grail` that exports `runGrailWorld()`. The helper has been added to the development source but is not included in the published v0.2.0 beta.
+
+From this parent-world directory, install the updated local `grail-release` package (adjust the path to your checkout):
 
 ```sh
-npm install
+npm install ../../grail-release
 ```
 
-Run the parent from this directory because its Node bindings use `./capabilities/...` paths.
+If a future published release includes `runGrailWorld()`, install that release instead. To verify the installed export:
+
+```sh
+node --input-type=module -e "import('@mamund/grail').then(m => console.log(typeof m.runGrailWorld))"
+```
+
+The expected output is `function`. GRAIL resolves Node binding module paths relative to the world root when the runtime receives the correct `baseDir`; the helper supplies that automatically. Capability-internal file paths and other dependencies remain the capability's responsibility.
 
 ## Run the child independently
 
@@ -65,15 +73,21 @@ These values appear in the relevant affordance observations, not necessarily tog
 
 ## How the nested invocation works
 
-The parent `verify-customer.mjs` adapter:
+The parent `verify-customer.mjs` adapter locates the child world relative to its own module and invokes the public helper:
 
-1. Locates and loads the child environment.
-2. Converts the child's relative Node binding module paths to absolute paths **in memory**, without modifying child configuration or changing `process.cwd()`.
-3. Constructs a new `Grail` instance with fresh child worldstate and passes in the parent's `customerId`.
-4. Calls `grail.pursue(environment.goal)` and throws if the child pursuit did not reach its goal.
-5. Reads `verificationStatus` from the child's `completeVerification` observation and returns it to the parent along with child pursuit evidence.
+```js
+const childResult = await runGrailWorld({
+  worldRoot: childRoot,
+  inputs: { customerId },
+  inputMode: 'override'
+});
+```
 
-The parent and child maintain separate worldstates. The child's `inputs.json` provides standalone defaults; when invoked by the parent, `customerId` is supplied by the parent.
+`runGrailWorld()` loads the child's configuration, resolves binding paths against the child world root, creates a fresh GRAIL instance, and pursues the child's configured goal (`customerVerified`). It does not change `process.cwd()` or rewrite configuration files. The parent's `customerId` overrides the value in the child's `inputs.json`; other configured inputs remain available. An omitted `inputs` argument would use the child's configured inputs unchanged. The helper also supports `inputMode: 'replace'` and an optional `goal` override.
+
+The adapter then checks `childResult.reached`, throwing if the child pursuit could not complete. On success, it reads `verificationStatus` from the `completeVerification` observation and returns that domain value and the child pursuit evidence to the parent. The parent and child maintain separate worldstates.
+
+A direct caller can also launch the parent from another working directory using `runGrailWorld({ worldRoot: '/absolute/path/to/nested-customer-onboarding' })`. This has been tested with the nested pursuit.
 
 ## Experiments and observed results
 
@@ -89,10 +103,11 @@ For detailed evidence, run `node api-run.js` and inspect the parent `verifyCusto
 
 - **Occurrence versus outcome:** `customerVerified` means the verification process completed, not that approval was granted. The capability determines the domain result.
 - **Parent goal semantics:** The final parent goal is `onboardingProcessed`, which describes completion of onboarding processing regardless of whether activation is `ACTIVE` or `DENIED`. This avoids treating a positive domain outcome as the GRAIL goal.
-- **Adapter plumbing:** `verify-customer.mjs` contains GRAIL-specific environment loading, pursuit execution, and observation extraction. The ordinary business capabilities are otherwise GRAIL-agnostic.
+- **Adapter plumbing:** `verify-customer.mjs` delegates environment loading, path resolution, and pursuit execution to `runGrailWorld()`. It still checks pursuit completion and extracts the domain result. The ordinary business capabilities are otherwise GRAIL-agnostic.
 - **Result contract:** The adapter currently extracts the child domain result from an observation associated with `completeVerification`. This is coupled to the child's internal affordance name and is an identified area for future interface/data-marshalling improvements.
 - **Existing bindings:** This experiment uses the Node binding and public API. It does not add or require a new binding protocol.
+- **Portability boundary:** GRAIL can locate and invoke a capability relative to the world root; any filesystem paths or external dependencies used *inside* that capability are its own responsibility.
 
 ## Key finding
 
-A GRAIL world can be invoked from an ordinary capability, and the resulting domain data can be passed to subsequent capabilities **without requiring the GRAIL runtime to interpret its meaning**. GRAIL tracks occurrences; capabilities interpret domain outcomes.
+A GRAIL world can be invoked from an ordinary capability through `runGrailWorld()`, and the resulting domain data can be passed to subsequent capabilities **without requiring the GRAIL runtime to interpret its meaning**. GRAIL tracks occurrences; capabilities interpret domain outcomes.

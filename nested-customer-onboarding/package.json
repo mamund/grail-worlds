@@ -6,6 +6,6 @@
     "run:api": "node api-run.js"
   },
   "dependencies": {
-    "@mamund/grail": "^0.2.0"
+    "@mamund/grail": "file:../../grail-release"
   }
 }

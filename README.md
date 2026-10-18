@@ -6,7 +6,7 @@ GRAIL pursues a declared goal by discovering affordances that can establish the 
 
 **Define the environment, not the path.**
 
-This repository collects self-contained worlds you can run, inspect, and adapt. Each world has its own configuration, capabilities, and README. Examples target [`@mamund/grail` v0.2.0](https://www.npmjs.com/package/@mamund/grail).
+This repository collects self-contained worlds you can run, inspect, and adapt. Each world has its own configuration, capabilities, and README. Most examples target [`@mamund/grail` v0.2.0](https://www.npmjs.com/package/@mamund/grail). The `nested-customer-onboarding` example uses the newer `runGrailWorld()` helper, currently available in the local `grail-release` development source rather than the published v0.2.0 beta.
 
 ## World catalog
 
@@ -15,7 +15,7 @@ This repository collects self-contained worlds you can run, inspect, and adapt. 
 | [`hello-grail`](./hello-grail/) | Goal resolution, preconditions, and runtime input overrides | Node.js |
 | [`customer-lookup`](./customer-lookup/) | HTTP bindings, observations, and passing learned outputs between affordances | Node.js; local HTTP service (included) |
 | [`customer-onboarding`](./customer-onboarding/) | Multi-capability composition, Node bindings, and separation of GRAIL state from application state | Node.js |
-| [`nested-customer-onboarding`](./nested-customer-onboarding/) | Recursive GRAIL composition, isolated worldstates, nested pursuits, and propagation of domain outcomes between worlds | Node.js |
+| [`nested-customer-onboarding`](./nested-customer-onboarding/) | Recursive GRAIL composition through `runGrailWorld()`, isolated worldstates, and propagation of domain outcomes | Node.js; local development build of GRAIL |
 | [`failure-recovery`](./failure-recovery/) | Alternative producers, FAIL recovery, and unresolvable conditions | Node.js |
 | [`message-classification`](./message-classification/) | LLM-backed and rules-based classification through interchangeable affordances | Node.js; Ollama and a local model for the LLM path |
 | [`customer-support`](./customer-support/) | Customer support response preparation, mixed deterministic and LLM capabilities, and repeated pursuits from a batch script | Node.js; Ollama and configured local models |
@@ -46,7 +46,7 @@ npx grail validate --config ./config
 npx grail run --config ./config --output=json
 ```
 
-Some worlds require a local service, an Ollama installation, or an interactive terminal. Each world documents its setup and expected result. In `purchase-management`, one pursuit handles one purchase request; run another pursuit to process another request.
+Some worlds require a local service, an Ollama installation, an interactive terminal, or a newer local GRAIL build. Each world documents its setup and expected result. In `purchase-management`, one pursuit handles one purchase request; run another pursuit to process another request.
 
 ## How a world is organized
 
@@ -76,11 +76,11 @@ GRAIL's world state tracks the conditions relevant to pursuit. Domain-specific v
 
 ## Suggested learning path
 
-Start with `hello-grail`, then `customer-lookup`, followed by `customer-onboarding`. Next, explore `nested-customer-onboarding` to see how one GRAIL world invokes another through the public API. The parent and child maintain independent environments, exchange domain data, and complete their pursuits even when verification is rejected and activation is denied. Explore `failure-recovery` to see how alternative affordances support continued pursuit after a failure. The remaining examples show how GRAIL integrates local models, larger support scenarios, and human interaction. Use `document-processing` to explore Python STDIO bindings, `$outputs.latest.*` references, and alternative affordances. Finish with `purchase-management` for a domain-oriented example that combines multiple binding types and records approved, rejected, or deferred purchase decisions.
+Start with `hello-grail`, then `customer-lookup`, followed by `customer-onboarding`. Next, explore `nested-customer-onboarding` to see how one GRAIL world invokes another through `runGrailWorld()`. The parent and child maintain independent environments, exchange domain data, and complete their pursuits even when verification is rejected and activation is denied. Explore `failure-recovery` to see how alternative affordances support continued pursuit after a failure. The remaining examples show how GRAIL integrates local models, larger support scenarios, and human interaction. Use `document-processing` to explore Python STDIO bindings, `$outputs.latest.*` references, and alternative affordances. Finish with `purchase-management` for a domain-oriented example that combines multiple binding types and records approved, rejected, or deferred purchase decisions.
 
 ## Using these examples
 
-Each world is intended to stand alone. Some examples contain multiple independently executable GRAIL worlds. In `nested-customer-onboarding`, the parent invokes a child verification world through a Node capability; the child can also be run independently using the GRAIL CLI. Copy a world into a separate project, install its dependencies, and change its inputs or capabilities to explore how the environment behaves. The examples are teaching material, not production-ready integrations; review security, credentials, external side effects, and domain rules before adapting them to live systems.
+Each world is intended to stand alone. Some examples contain multiple independently executable GRAIL worlds. In `nested-customer-onboarding`, the parent invokes a child verification world through a Node capability using `runGrailWorld()`; the child can also be run independently using the GRAIL CLI. Until the helper is published, install the local `grail-release` package in the nested example (from `nested-customer-onboarding/`, run `npm install ../../grail-release` when both repositories are sibling directories). See that world’s README for details. Copy a world into a separate project, install its dependencies, and change its inputs or capabilities to explore how the environment behaves. The examples are teaching material, not production-ready integrations; review security, credentials, external side effects, and domain rules before adapting them to live systems.
 
 ## Related projects
 

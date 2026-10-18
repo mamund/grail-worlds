@@ -16,7 +16,7 @@ grail validate --config config
 grail run --config config --output=json
 ```
 
-From another directory, supply the path to this world's `config` directory with `--config`. Because the Node capability module paths are relative, run the standalone CLI commands from the world directory unless the paths are adjusted for the caller's working directory.
+From another directory, supply the path to this world's `config` directory with `--config`. GRAIL resolves Node binding module paths relative to the world root (the parent of `config/`), rather than the caller's working directory. The capability code itself remains responsible for its own filesystem and other dependencies.
 
 The configured goal is `customerVerified`. A successful pursuit has `reached: true` and these worldstate conditions set to `true`: `customerLocated`, `identityChecked`, `accountChecked`, and `customerVerified`.
 
@@ -50,9 +50,21 @@ The capability also retains a commented-out customer-ID-based identity fixture; 
 
 ## Use as a child world
 
-The parent `customer-onboarding` world passes a `customerId` into a fresh child pursuit and reads `verificationStatus` from the `completeVerification` observation. The parent decides what to do with that result. The child does not know about the parent, its goal, or its activation policy.
+The parent `nested-customer-onboarding` world uses `runGrailWorld()` to pass a `customerId` into a fresh child pursuit and reads `verificationStatus` from the `completeVerification` observation. The parent decides what to do with that result. The child does not know about the parent, its goal, or its activation policy.
 
-This experiment uses the existing Node binding and public API; it does not require a dedicated nested-GRAIL binding. The parent wrapper is responsible for resolving the child's local module paths and adapting its pursuit result.
+The parent adapter calls the reusable API rather than manually loading the child environment or rewriting Node binding paths:
+
+```js
+const childResult = await runGrailWorld({
+  worldRoot: childRoot,
+  inputs: { customerId },
+  inputMode: 'override'
+});
+```
+
+The child's `config/goal.json` supplies the default goal, and its `config/inputs.json` supplies defaults for inputs not overridden by the caller. `runGrailWorld()` handles the world root and creates a fresh GRAIL instance for each call. The parent adapter still checks `childResult.reached` and extracts the domain result from the child's observations.
+
+This experiment uses the existing Node binding and public API; it does not require a dedicated nested-GRAIL binding. The `runGrailWorld()` helper is available in the updated development version of `@mamund/grail`; it is not part of the published v0.2.0 beta. To run the parent with this adapter, install the updated local package in the parent project until a version containing the helper is published.
 
 ## Inspecting results
 
