@@ -1,0 +1,103 @@
+{
+  "lookupCustomer": {
+    "id": "aff-lookupCustomer",
+    "action": "lookupCustomer",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "customerId": "$inputs.customerId"
+    },
+    "effects": [
+      "customerLocated"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/lookup-customer.mjs",
+      "function": "execute",
+      "outputs": {
+        "customerId": {
+          "from": "result",
+          "path": "customerId"
+        }
+      }
+    }
+  },
+  "checkIdentity": {
+    "id": "aff-checkIdentity",
+    "action": "checkIdentity",
+    "type": "task",
+    "preconditions": [
+      "customerLocated"
+    ],
+    "inputs": {
+      "customerId": "$inputs.customerId"
+    },
+    "effects": [
+      "identityChecked"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/check-identity.mjs",
+      "function": "execute",
+      "outputs": {
+        "identityStatus": {
+          "from": "result",
+          "path": "identityStatus"
+        }
+      }
+    }
+  },
+  "checkAccount": {
+    "id": "aff-checkAccount",
+    "action": "checkAccount",
+    "type": "task",
+    "preconditions": [
+      "customerLocated"
+    ],
+    "inputs": {
+      "customerId": "$inputs.customerId"
+    },
+    "effects": [
+      "accountChecked"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/check-account.mjs",
+      "function": "execute",
+      "outputs": {
+        "accountStatus": {
+          "from": "result",
+          "path": "accountStatus"
+        }
+      }
+    }
+  },
+  "completeVerification": {
+    "id": "aff-completeVerification",
+    "action": "completeVerification",
+    "type": "task",
+    "preconditions": [
+      "identityChecked",
+      "accountChecked"
+    ],
+    "inputs": {
+      "customerId": "$inputs.customerId",
+      "identityStatus": "$outputs.latest.identityStatus",
+      "accountStatus": "$outputs.latest.accountStatus"
+    },
+    "effects": [
+      "customerVerified"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/complete-verification.mjs",
+      "function": "execute",
+      "outputs": {
+        "verificationStatus": {
+          "from": "result",
+          "path": "verificationStatus"
+        }
+      }
+    }
+  }
+}

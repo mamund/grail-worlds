@@ -1,0 +1,102 @@
+[
+  {
+    "invocation": {
+      "id": "inv-001",
+      "affordance": "lookupCustomer",
+      "timestamp": "2026-10-18T17:34:05.587Z",
+      "module": "./capabilities/lookup-customer.mjs",
+      "function": "execute",
+      "inputs": {
+        "customerId": "C100"
+      }
+    },
+    "timing": {
+      "durationMs": 1.234318
+    },
+    "response": {
+      "result": {
+        "customerId": "C100",
+        "found": true
+      }
+    },
+    "outputs": {
+      "customerId": "C100"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-002",
+      "affordance": "checkIdentity",
+      "timestamp": "2026-10-18T17:34:05.589Z",
+      "module": "./capabilities/check-identity.mjs",
+      "function": "execute",
+      "inputs": {
+        "customerId": "C100"
+      }
+    },
+    "timing": {
+      "durationMs": 0.819017
+    },
+    "response": {
+      "result": {
+        "identityStatus": "REJECTED"
+      }
+    },
+    "outputs": {
+      "identityStatus": "REJECTED"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-003",
+      "affordance": "checkAccount",
+      "timestamp": "2026-10-18T17:34:05.590Z",
+      "module": "./capabilities/check-account.mjs",
+      "function": "execute",
+      "inputs": {
+        "customerId": "C100"
+      }
+    },
+    "timing": {
+      "durationMs": 0.539016
+    },
+    "response": {
+      "result": {
+        "accountStatus": "OPEN"
+      }
+    },
+    "outputs": {
+      "accountStatus": "OPEN"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-004",
+      "affordance": "completeVerification",
+      "timestamp": "2026-10-18T17:34:05.590Z",
+      "module": "./capabilities/complete-verification.mjs",
+      "function": "execute",
+      "inputs": {
+        "customerId": "C100",
+        "identityStatus": "REJECTED",
+        "accountStatus": "OPEN"
+      }
+    },
+    "timing": {
+      "durationMs": 0.527821
+    },
+    "response": {
+      "result": {
+        "customerId": "C100",
+        "verificationStatus": "REJECTED"
+      }
+    },
+    "outputs": {
+      "verificationStatus": "REJECTED"
+    },
+    "result": "SUCCESS"
+  }
+]

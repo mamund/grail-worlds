@@ -3,7 +3,7 @@
     "invocation": {
       "id": "inv-001",
       "affordance": "startOnboarding",
-      "timestamp": "2026-10-14T14:11:36.765Z",
+      "timestamp": "2026-10-15T17:57:37.620Z",
       "module": "./capabilities/onboarding.js",
       "function": "startOnboarding",
       "inputs": {
@@ -11,7 +11,7 @@
       }
     },
     "timing": {
-      "durationMs": 1.685492
+      "durationMs": 1.524036
     },
     "response": {
       "result": {
@@ -27,7 +27,7 @@
     "invocation": {
       "id": "inv-002",
       "affordance": "createCustomerProfile",
-      "timestamp": "2026-10-14T14:11:36.767Z",
+      "timestamp": "2026-10-15T17:57:37.623Z",
       "module": "./capabilities/onboarding.js",
       "function": "createCustomerProfile",
       "inputs": {
@@ -35,7 +35,7 @@
       }
     },
     "timing": {
-      "durationMs": 0.246752
+      "durationMs": 0.243117
     },
     "response": {
       "result": {
@@ -51,7 +51,7 @@
     "invocation": {
       "id": "inv-003",
       "affordance": "setCustomerDetails",
-      "timestamp": "2026-10-14T14:11:37.292Z",
+      "timestamp": "2026-10-15T17:57:37.623Z",
       "module": "./capabilities/onboarding.js",
       "function": "setCustomerDetails",
       "inputs": {
@@ -62,7 +62,7 @@
       }
     },
     "timing": {
-      "durationMs": 0.53612
+      "durationMs": 0.459099
     },
     "response": {
       "result": {
@@ -79,33 +79,8 @@
   {
     "invocation": {
       "id": "inv-004",
-      "affordance": "verifyCustomerPhone",
-      "timestamp": "2026-10-14T14:11:37.304Z",
-      "module": "./capabilities/onboarding.js",
-      "function": "verifyCustomerPhone",
-      "inputs": {
-        "customerId": "CUS-100",
-        "phoneVerificationId": "PHONE-100"
-      }
-    },
-    "timing": {
-      "durationMs": 0.773114
-    },
-    "response": {
-      "result": {
-        "verifiedPhone": "+1-555-0100"
-      }
-    },
-    "outputs": {
-      "verifiedPhone": "+1-555-0100"
-    },
-    "result": "SUCCESS"
-  },
-  {
-    "invocation": {
-      "id": "inv-005",
       "affordance": "acceptTerms",
-      "timestamp": "2026-10-14T14:11:37.307Z",
+      "timestamp": "2026-10-15T17:57:37.624Z",
       "module": "./capabilities/onboarding.js",
       "function": "acceptTerms",
       "inputs": {
@@ -114,7 +89,7 @@
       }
     },
     "timing": {
-      "durationMs": 0.783652
+      "durationMs": 0.16658
     },
     "response": {
       "result": {
@@ -128,9 +103,30 @@
   },
   {
     "invocation": {
+      "id": "inv-005",
+      "affordance": "verifyEmailUnavailable",
+      "timestamp": "2026-10-15T17:57:37.624Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "verifyEmailUnavailable",
+      "inputs": {
+        "customerId": "CUS-100",
+        "emailVerificationId": "EMAIL-100"
+      }
+    },
+    "timing": {
+      "durationMs": 0.218129
+    },
+    "response": {
+      "error": "Email verification provider is unavailable"
+    },
+    "outputs": {},
+    "result": "FAIL"
+  },
+  {
+    "invocation": {
       "id": "inv-006",
       "affordance": "verifyCustomerEmail",
-      "timestamp": "2026-10-14T14:11:37.310Z",
+      "timestamp": "2026-10-15T17:57:37.625Z",
       "module": "./capabilities/onboarding.js",
       "function": "verifyCustomerEmail",
       "inputs": {
@@ -139,7 +135,7 @@
       }
     },
     "timing": {
-      "durationMs": 0.363714
+      "durationMs": 0.274707
     },
     "response": {
       "result": {
@@ -154,8 +150,33 @@
   {
     "invocation": {
       "id": "inv-007",
+      "affordance": "verifyCustomerPhone",
+      "timestamp": "2026-10-15T17:57:37.626Z",
+      "module": "./capabilities/onboarding.js",
+      "function": "verifyCustomerPhone",
+      "inputs": {
+        "customerId": "CUS-100",
+        "phoneVerificationId": "PHONE-100"
+      }
+    },
+    "timing": {
+      "durationMs": 0.269598
+    },
+    "response": {
+      "result": {
+        "verifiedPhone": "+1-555-0100"
+      }
+    },
+    "outputs": {
+      "verifiedPhone": "+1-555-0100"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-008",
       "affordance": "onboardCustomerUnavailable",
-      "timestamp": "2026-10-14T14:11:37.310Z",
+      "timestamp": "2026-10-15T17:57:37.626Z",
       "module": "./capabilities/onboarding.js",
       "function": "onboardCustomerUnavailable",
       "inputs": {
@@ -164,7 +185,7 @@
       }
     },
     "timing": {
-      "durationMs": 0.498063
+      "durationMs": 0.181206
     },
     "response": {
       "error": "Primary onboarding provider is unavailable"
@@ -174,9 +195,9 @@
   },
   {
     "invocation": {
-      "id": "inv-008",
+      "id": "inv-009",
       "affordance": "onboardCustomer",
-      "timestamp": "2026-10-14T14:11:37.311Z",
+      "timestamp": "2026-10-15T17:57:37.627Z",
       "module": "./capabilities/onboarding.js",
       "function": "onboardCustomer",
       "inputs": {
@@ -185,7 +206,7 @@
       }
     },
     "timing": {
-      "durationMs": 0.361943
+      "durationMs": 0.26419
     },
     "response": {
       "result": {

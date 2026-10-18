@@ -1,0 +1,111 @@
+{
+  "createCustomer": {
+    "id": "aff-createCustomer",
+    "action": "createCustomer",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "customerId": "$inputs.customerId"
+    },
+    "effects": [
+      "customerCreated"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/create-customer.mjs",
+      "function": "execute",
+      "outputs": {
+        "customerId": {
+          "from": "result",
+          "path": "customerId"
+        }
+      }
+    }
+  },
+  "prepareAccount": {
+    "id": "aff-prepareAccount",
+    "action": "prepareAccount",
+    "type": "task",
+    "preconditions": [
+      "customerCreated"
+    ],
+    "inputs": {
+      "customerId": "$inputs.customerId"
+    },
+    "effects": [
+      "accountPrepared"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/prepare-account.mjs",
+      "function": "execute",
+      "outputs": {
+        "accountId": {
+          "from": "result",
+          "path": "accountId"
+        }
+      }
+    }
+  },
+  "activateCustomer": {
+    "id": "aff-activateCustomer",
+    "action": "activateCustomer",
+    "type": "task",
+    "preconditions": [
+      "accountPrepared",
+      "verificationCompleted"
+    ],
+    "inputs": {
+      "customerId": "$inputs.customerId",
+      "verificationCompleted": "$outputs.latest.verificationCompleted",
+      "verificationStatus": "$outputs.latest.verificationStatus"
+    },
+    "effects": [
+      "onboardingProcessed"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/activate-customer.mjs",
+      "function": "execute",
+      "outputs": {
+        "activationStatus": {
+          "from": "result",
+          "path": "activationStatus"
+        }
+      }
+    }
+  },
+  "verifyCustomer": {
+    "id": "aff-verifyCustomer",
+    "action": "verifyCustomer",
+    "type": "task",
+    "preconditions": [
+      "accountPrepared"
+    ],
+    "inputs": {
+      "customerId": "$inputs.customerId"
+    },
+    "effects": [
+      "verificationCompleted"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/verify-customer.mjs",
+      "function": "execute",
+      "outputs": {
+        "verificationCompleted": {
+          "from": "result",
+          "path": "verificationCompleted"
+        },
+        "childReached": {
+          "from": "result",
+          "path": "childReached"
+        },
+        "verificationStatus": {
+          "from": "result",
+          "path": "verificationStatus"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,310 @@
+[
+  {
+    "type": "affordance.selected",
+    "affordance": "onboardCustomerUnavailable",
+    "candidates": [
+      "onboardCustomer",
+      "onboardCustomerUnavailable"
+    ],
+    "sequence": 1
+  },
+  {
+    "type": "stack.push",
+    "affordance": "onboardCustomerUnavailable",
+    "result": null,
+    "stack": [
+      "onboardCustomerUnavailable"
+    ],
+    "sequence": 2
+  },
+  {
+    "type": "condition.selected",
+    "condition": "customerAddressSet",
+    "candidates": [
+      "customerEmailVerified",
+      "customerPhoneVerified",
+      "customerAddressSet",
+      "termsAccepted"
+    ],
+    "sequence": 3
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "setCustomerDetails",
+    "candidates": [
+      "setCustomerDetails"
+    ],
+    "sequence": 4
+  },
+  {
+    "type": "stack.push",
+    "affordance": "setCustomerDetails",
+    "result": null,
+    "stack": [
+      "onboardCustomerUnavailable",
+      "setCustomerDetails"
+    ],
+    "sequence": 5
+  },
+  {
+    "type": "condition.selected",
+    "condition": "customerProfileCreated",
+    "candidates": [
+      "customerProfileCreated"
+    ],
+    "sequence": 6
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "createCustomerProfile",
+    "candidates": [
+      "createCustomerProfile"
+    ],
+    "sequence": 7
+  },
+  {
+    "type": "stack.push",
+    "affordance": "createCustomerProfile",
+    "result": null,
+    "stack": [
+      "onboardCustomerUnavailable",
+      "setCustomerDetails",
+      "createCustomerProfile"
+    ],
+    "sequence": 8
+  },
+  {
+    "type": "condition.selected",
+    "condition": "onboardingStarted",
+    "candidates": [
+      "onboardingStarted"
+    ],
+    "sequence": 9
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "startOnboarding",
+    "candidates": [
+      "startOnboarding"
+    ],
+    "sequence": 10
+  },
+  {
+    "type": "stack.push",
+    "affordance": "startOnboarding",
+    "result": null,
+    "stack": [
+      "onboardCustomerUnavailable",
+      "setCustomerDetails",
+      "createCustomerProfile",
+      "startOnboarding"
+    ],
+    "sequence": 11
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "startOnboarding",
+    "result": "SUCCESS",
+    "stack": [
+      "onboardCustomerUnavailable",
+      "setCustomerDetails",
+      "createCustomerProfile"
+    ],
+    "sequence": 12
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "createCustomerProfile",
+    "result": "SUCCESS",
+    "stack": [
+      "onboardCustomerUnavailable",
+      "setCustomerDetails"
+    ],
+    "sequence": 13
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "setCustomerDetails",
+    "result": "SUCCESS",
+    "stack": [
+      "onboardCustomerUnavailable"
+    ],
+    "sequence": 14
+  },
+  {
+    "type": "condition.selected",
+    "condition": "termsAccepted",
+    "candidates": [
+      "customerEmailVerified",
+      "customerPhoneVerified",
+      "termsAccepted"
+    ],
+    "sequence": 15
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "acceptTerms",
+    "candidates": [
+      "acceptTerms"
+    ],
+    "sequence": 16
+  },
+  {
+    "type": "stack.push",
+    "affordance": "acceptTerms",
+    "result": null,
+    "stack": [
+      "onboardCustomerUnavailable",
+      "acceptTerms"
+    ],
+    "sequence": 17
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "acceptTerms",
+    "result": "SUCCESS",
+    "stack": [
+      "onboardCustomerUnavailable"
+    ],
+    "sequence": 18
+  },
+  {
+    "type": "condition.selected",
+    "condition": "customerEmailVerified",
+    "candidates": [
+      "customerEmailVerified",
+      "customerPhoneVerified"
+    ],
+    "sequence": 19
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "verifyEmailUnavailable",
+    "candidates": [
+      "verifyCustomerEmail",
+      "verifyEmailUnavailable"
+    ],
+    "sequence": 20
+  },
+  {
+    "type": "stack.push",
+    "affordance": "verifyEmailUnavailable",
+    "result": null,
+    "stack": [
+      "onboardCustomerUnavailable",
+      "verifyEmailUnavailable"
+    ],
+    "sequence": 21
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "verifyEmailUnavailable",
+    "result": "FAIL",
+    "stack": [
+      "onboardCustomerUnavailable"
+    ],
+    "sequence": 22
+  },
+  {
+    "type": "condition.selected",
+    "condition": "customerEmailVerified",
+    "candidates": [
+      "customerEmailVerified",
+      "customerPhoneVerified"
+    ],
+    "sequence": 23
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "verifyCustomerEmail",
+    "candidates": [
+      "verifyCustomerEmail"
+    ],
+    "sequence": 24
+  },
+  {
+    "type": "stack.push",
+    "affordance": "verifyCustomerEmail",
+    "result": null,
+    "stack": [
+      "onboardCustomerUnavailable",
+      "verifyCustomerEmail"
+    ],
+    "sequence": 25
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "verifyCustomerEmail",
+    "result": "SUCCESS",
+    "stack": [
+      "onboardCustomerUnavailable"
+    ],
+    "sequence": 26
+  },
+  {
+    "type": "condition.selected",
+    "condition": "customerPhoneVerified",
+    "candidates": [
+      "customerPhoneVerified"
+    ],
+    "sequence": 27
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "verifyCustomerPhone",
+    "candidates": [
+      "verifyCustomerPhone"
+    ],
+    "sequence": 28
+  },
+  {
+    "type": "stack.push",
+    "affordance": "verifyCustomerPhone",
+    "result": null,
+    "stack": [
+      "onboardCustomerUnavailable",
+      "verifyCustomerPhone"
+    ],
+    "sequence": 29
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "verifyCustomerPhone",
+    "result": "SUCCESS",
+    "stack": [
+      "onboardCustomerUnavailable"
+    ],
+    "sequence": 30
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "onboardCustomerUnavailable",
+    "result": "FAIL",
+    "stack": [],
+    "sequence": 31
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "onboardCustomer",
+    "candidates": [
+      "onboardCustomer"
+    ],
+    "sequence": 32
+  },
+  {
+    "type": "stack.push",
+    "affordance": "onboardCustomer",
+    "result": null,
+    "stack": [
+      "onboardCustomer"
+    ],
+    "sequence": 33
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "onboardCustomer",
+    "result": "SUCCESS",
+    "stack": [],
+    "sequence": 34
+  }
+]

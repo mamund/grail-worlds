@@ -15,6 +15,7 @@ This repository collects self-contained worlds you can run, inspect, and adapt. 
 | [`hello-grail`](./hello-grail/) | Goal resolution, preconditions, and runtime input overrides | Node.js |
 | [`customer-lookup`](./customer-lookup/) | HTTP bindings, observations, and passing learned outputs between affordances | Node.js; local HTTP service (included) |
 | [`customer-onboarding`](./customer-onboarding/) | Multi-capability composition, Node bindings, and separation of GRAIL state from application state | Node.js |
+| [`nested-customer-onboarding`](./nested-customer-onboarding/) | Recursive GRAIL composition, isolated worldstates, nested pursuits, and propagation of domain outcomes between worlds | Node.js |
 | [`failure-recovery`](./failure-recovery/) | Alternative producers, FAIL recovery, and unresolvable conditions | Node.js |
 | [`message-classification`](./message-classification/) | LLM-backed and rules-based classification through interchangeable affordances | Node.js; Ollama and a local model for the LLM path |
 | [`customer-support`](./customer-support/) | Customer support response preparation, mixed deterministic and LLM capabilities, and repeated pursuits from a batch script | Node.js; Ollama and configured local models |
@@ -75,11 +76,11 @@ GRAIL's world state tracks the conditions relevant to pursuit. Domain-specific v
 
 ## Suggested learning path
 
-Start with `hello-grail`, then `customer-lookup`, followed by `customer-onboarding`. Explore `failure-recovery` to see how alternative affordances support continued pursuit after a failure. The remaining examples show how GRAIL integrates local models, larger support scenarios, and human interaction. Use `document-processing` to explore Python STDIO bindings, `$outputs.latest.*` references, and alternative affordances. Finish with `purchase-management` for a domain-oriented example that combines multiple binding types and records approved, rejected, or deferred purchase decisions.
+Start with `hello-grail`, then `customer-lookup`, followed by `customer-onboarding`. Next, explore `nested-customer-onboarding` to see how one GRAIL world invokes another through the public API. The parent and child maintain independent environments, exchange domain data, and complete their pursuits even when verification is rejected and activation is denied. Explore `failure-recovery` to see how alternative affordances support continued pursuit after a failure. The remaining examples show how GRAIL integrates local models, larger support scenarios, and human interaction. Use `document-processing` to explore Python STDIO bindings, `$outputs.latest.*` references, and alternative affordances. Finish with `purchase-management` for a domain-oriented example that combines multiple binding types and records approved, rejected, or deferred purchase decisions.
 
 ## Using these examples
 
-Each world is intended to stand alone. Copy a world into a separate project, install its dependencies, and change its inputs or capabilities to explore how the environment behaves. The examples are teaching material, not production-ready integrations; review security, credentials, external side effects, and domain rules before adapting them to live systems.
+Each world is intended to stand alone. Some examples contain multiple independently executable GRAIL worlds. In `nested-customer-onboarding`, the parent invokes a child verification world through a Node capability; the child can also be run independently using the GRAIL CLI. Copy a world into a separate project, install its dependencies, and change its inputs or capabilities to explore how the environment behaves. The examples are teaching material, not production-ready integrations; review security, credentials, external side effects, and domain rules before adapting them to live systems.
 
 ## Related projects
 
