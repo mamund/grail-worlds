@@ -3,7 +3,7 @@
     "invocation": {
       "id": "inv-001",
       "affordance": "createCustomer",
-      "timestamp": "2026-10-18T17:17:58.359Z",
+      "timestamp": "2026-10-19T13:24:13.212Z",
       "module": "./capabilities/create-customer.mjs",
       "function": "execute",
       "inputs": {
@@ -11,7 +11,7 @@
       }
     },
     "timing": {
-      "durationMs": 1.115473
+      "durationMs": 2.391145
     },
     "response": {
       "result": {
@@ -28,7 +28,7 @@
     "invocation": {
       "id": "inv-002",
       "affordance": "prepareAccount",
-      "timestamp": "2026-10-18T17:17:58.360Z",
+      "timestamp": "2026-10-19T13:24:13.215Z",
       "module": "./capabilities/prepare-account.mjs",
       "function": "execute",
       "inputs": {
@@ -36,7 +36,7 @@
       }
     },
     "timing": {
-      "durationMs": 0.724169
+      "durationMs": 0.590427
     },
     "response": {
       "result": {
@@ -53,7 +53,7 @@
     "invocation": {
       "id": "inv-003",
       "affordance": "verifyCustomer",
-      "timestamp": "2026-10-18T17:17:58.361Z",
+      "timestamp": "2026-10-19T13:24:13.216Z",
       "module": "./capabilities/verify-customer.mjs",
       "function": "execute",
       "inputs": {
@@ -61,11 +61,13 @@
       }
     },
     "timing": {
-      "durationMs": 138.657276
+      "durationMs": 30.388867
     },
     "response": {
       "result": {
+        "customerId": "C100",
         "verificationCompleted": true,
+        "verificationStatus": "REJECTED",
         "childReached": true,
         "childGoal": "customerVerified",
         "childWorldstate": {
@@ -79,15 +81,15 @@
             "invocation": {
               "id": "inv-001",
               "affordance": "lookupCustomer",
-              "timestamp": "2026-10-18T17:17:58.495Z",
-              "module": "/home/mca/Desktop/customer-onboarding-stage4/child-world/customer-verification/capabilities/lookup-customer.mjs",
+              "timestamp": "2026-10-19T13:24:13.242Z",
+              "module": "./capabilities/lookup-customer.mjs",
               "function": "execute",
               "inputs": {
                 "customerId": "C100"
               }
             },
             "timing": {
-              "durationMs": 1.826426
+              "durationMs": 0.914085
             },
             "response": {
               "result": {
@@ -104,15 +106,15 @@
             "invocation": {
               "id": "inv-002",
               "affordance": "checkIdentity",
-              "timestamp": "2026-10-18T17:17:58.497Z",
-              "module": "/home/mca/Desktop/customer-onboarding-stage4/child-world/customer-verification/capabilities/check-identity.mjs",
+              "timestamp": "2026-10-19T13:24:13.244Z",
+              "module": "./capabilities/check-identity.mjs",
               "function": "execute",
               "inputs": {
                 "customerId": "C100"
               }
             },
             "timing": {
-              "durationMs": 0.816556
+              "durationMs": 0.53276
             },
             "response": {
               "result": {
@@ -128,15 +130,15 @@
             "invocation": {
               "id": "inv-003",
               "affordance": "checkAccount",
-              "timestamp": "2026-10-18T17:17:58.498Z",
-              "module": "/home/mca/Desktop/customer-onboarding-stage4/child-world/customer-verification/capabilities/check-account.mjs",
+              "timestamp": "2026-10-19T13:24:13.244Z",
+              "module": "./capabilities/check-account.mjs",
               "function": "execute",
               "inputs": {
                 "customerId": "C100"
               }
             },
             "timing": {
-              "durationMs": 0.784816
+              "durationMs": 0.690858
             },
             "response": {
               "result": {
@@ -152,23 +154,26 @@
             "invocation": {
               "id": "inv-004",
               "affordance": "completeVerification",
-              "timestamp": "2026-10-18T17:17:58.499Z",
-              "module": "/home/mca/Desktop/customer-onboarding-stage4/child-world/customer-verification/capabilities/complete-verification.mjs",
+              "timestamp": "2026-10-19T13:24:13.245Z",
+              "module": "./capabilities/complete-verification.mjs",
               "function": "execute",
               "inputs": {
-                "customerId": "C100"
+                "customerId": "C100",
+                "identityStatus": "REJECTED",
+                "accountStatus": "OPEN"
               }
             },
             "timing": {
-              "durationMs": 0.76012
+              "durationMs": 0.740444
             },
             "response": {
               "result": {
-                "verificationStatus": "APPROVED"
+                "customerId": "C100",
+                "verificationStatus": "REJECTED"
               }
             },
             "outputs": {
-              "verificationStatus": "APPROVED"
+              "verificationStatus": "REJECTED"
             },
             "result": "SUCCESS"
           }
@@ -177,7 +182,8 @@
     },
     "outputs": {
       "verificationCompleted": true,
-      "childReached": true
+      "childReached": true,
+      "verificationStatus": "REJECTED"
     },
     "result": "SUCCESS"
   },
@@ -185,25 +191,26 @@
     "invocation": {
       "id": "inv-004",
       "affordance": "activateCustomer",
-      "timestamp": "2026-10-18T17:17:58.501Z",
+      "timestamp": "2026-10-19T13:24:13.246Z",
       "module": "./capabilities/activate-customer.mjs",
       "function": "execute",
       "inputs": {
         "customerId": "C100",
-        "verificationCompleted": true
+        "verificationCompleted": true,
+        "verificationStatus": "REJECTED"
       }
     },
     "timing": {
-      "durationMs": 2.243258
+      "durationMs": 0.642932
     },
     "response": {
       "result": {
-        "activationStatus": "ACTIVE",
-        "customerId": "C100"
+        "customerId": "C100",
+        "activationStatus": "DENIED"
       }
     },
     "outputs": {
-      "activationStatus": "ACTIVE"
+      "activationStatus": "DENIED"
     },
     "result": "SUCCESS"
   }

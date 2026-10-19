@@ -1,0 +1,9 @@
+{
+  "customerLocated": false,
+  "salesContactResolved": false,
+  "invoiceTotalComputed": false,
+  "creditCalculated": false,
+  "creditProcessed": false,
+  "thankYouPreparationProcessed": false,
+  "customerAppreciationProcessed": false
+}

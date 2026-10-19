@@ -1,0 +1,8 @@
+{
+  "operationId": "THANKYOU-2026-C100",
+  "customerId": "C100",
+  "creditPercent": 10,
+  "periodStart": "2025-01-01",
+  "periodEnd": "2025-12-31",
+  "currency": "USD"
+}

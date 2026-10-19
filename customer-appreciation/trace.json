@@ -1,0 +1,261 @@
+[
+  {
+    "type": "affordance.selected",
+    "affordance": "processThankYou",
+    "candidates": [
+      "processThankYou"
+    ],
+    "sequence": 1
+  },
+  {
+    "type": "stack.push",
+    "affordance": "processThankYou",
+    "result": null,
+    "stack": [
+      "processThankYou"
+    ],
+    "sequence": 2
+  },
+  {
+    "type": "condition.selected",
+    "condition": "thankYouPreparationProcessed",
+    "candidates": [
+      "thankYouPreparationProcessed"
+    ],
+    "sequence": 3
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "prepareThankYou",
+    "candidates": [
+      "prepareThankYou"
+    ],
+    "sequence": 4
+  },
+  {
+    "type": "stack.push",
+    "affordance": "prepareThankYou",
+    "result": null,
+    "stack": [
+      "processThankYou",
+      "prepareThankYou"
+    ],
+    "sequence": 5
+  },
+  {
+    "type": "condition.selected",
+    "condition": "creditProcessed",
+    "candidates": [
+      "customerLocated",
+      "salesContactResolved",
+      "creditProcessed"
+    ],
+    "sequence": 6
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "processCredit",
+    "candidates": [
+      "processCredit"
+    ],
+    "sequence": 7
+  },
+  {
+    "type": "stack.push",
+    "affordance": "processCredit",
+    "result": null,
+    "stack": [
+      "processThankYou",
+      "prepareThankYou",
+      "processCredit"
+    ],
+    "sequence": 8
+  },
+  {
+    "type": "condition.selected",
+    "condition": "creditCalculated",
+    "candidates": [
+      "customerLocated",
+      "creditCalculated"
+    ],
+    "sequence": 9
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "calculateCredit",
+    "candidates": [
+      "calculateCredit"
+    ],
+    "sequence": 10
+  },
+  {
+    "type": "stack.push",
+    "affordance": "calculateCredit",
+    "result": null,
+    "stack": [
+      "processThankYou",
+      "prepareThankYou",
+      "processCredit",
+      "calculateCredit"
+    ],
+    "sequence": 11
+  },
+  {
+    "type": "condition.selected",
+    "condition": "invoiceTotalComputed",
+    "candidates": [
+      "invoiceTotalComputed"
+    ],
+    "sequence": 12
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "totalInvoices",
+    "candidates": [
+      "totalInvoices"
+    ],
+    "sequence": 13
+  },
+  {
+    "type": "stack.push",
+    "affordance": "totalInvoices",
+    "result": null,
+    "stack": [
+      "processThankYou",
+      "prepareThankYou",
+      "processCredit",
+      "calculateCredit",
+      "totalInvoices"
+    ],
+    "sequence": 14
+  },
+  {
+    "type": "condition.selected",
+    "condition": "customerLocated",
+    "candidates": [
+      "customerLocated"
+    ],
+    "sequence": 15
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "findCustomer",
+    "candidates": [
+      "findCustomer"
+    ],
+    "sequence": 16
+  },
+  {
+    "type": "stack.push",
+    "affordance": "findCustomer",
+    "result": null,
+    "stack": [
+      "processThankYou",
+      "prepareThankYou",
+      "processCredit",
+      "calculateCredit",
+      "totalInvoices",
+      "findCustomer"
+    ],
+    "sequence": 17
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "findCustomer",
+    "result": "SUCCESS",
+    "stack": [
+      "processThankYou",
+      "prepareThankYou",
+      "processCredit",
+      "calculateCredit",
+      "totalInvoices"
+    ],
+    "sequence": 18
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "totalInvoices",
+    "result": "SUCCESS",
+    "stack": [
+      "processThankYou",
+      "prepareThankYou",
+      "processCredit",
+      "calculateCredit"
+    ],
+    "sequence": 19
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "calculateCredit",
+    "result": "SUCCESS",
+    "stack": [
+      "processThankYou",
+      "prepareThankYou",
+      "processCredit"
+    ],
+    "sequence": 20
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "processCredit",
+    "result": "SUCCESS",
+    "stack": [
+      "processThankYou",
+      "prepareThankYou"
+    ],
+    "sequence": 21
+  },
+  {
+    "type": "condition.selected",
+    "condition": "salesContactResolved",
+    "candidates": [
+      "salesContactResolved"
+    ],
+    "sequence": 22
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "findSalesRep",
+    "candidates": [
+      "findSalesRep"
+    ],
+    "sequence": 23
+  },
+  {
+    "type": "stack.push",
+    "affordance": "findSalesRep",
+    "result": null,
+    "stack": [
+      "processThankYou",
+      "prepareThankYou",
+      "findSalesRep"
+    ],
+    "sequence": 24
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "findSalesRep",
+    "result": "SUCCESS",
+    "stack": [
+      "processThankYou",
+      "prepareThankYou"
+    ],
+    "sequence": 25
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "prepareThankYou",
+    "result": "SUCCESS",
+    "stack": [
+      "processThankYou"
+    ],
+    "sequence": 26
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "processThankYou",
+    "result": "SUCCESS",
+    "stack": [],
+    "sequence": 27
+  }
+]

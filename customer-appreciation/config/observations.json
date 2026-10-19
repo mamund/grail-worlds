@@ -1,0 +1,218 @@
+[
+  {
+    "invocation": {
+      "id": "inv-001",
+      "affordance": "findCustomer",
+      "timestamp": "2026-10-19T18:45:46.688Z",
+      "command": "python3",
+      "args": [
+        "./capabilities/findCustomer.py"
+      ],
+      "inputs": {
+        "customerId": "C100"
+      }
+    },
+    "timing": {
+      "durationMs": 41.484357
+    },
+    "response": {
+      "exitCode": 0,
+      "stdout": {
+        "customerId": "C100",
+        "customerEmail": "customer@example.test"
+      },
+      "stderr": ""
+    },
+    "outputs": {
+      "customerId": "C100",
+      "customerEmail": "customer@example.test"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-002",
+      "affordance": "totalInvoices",
+      "timestamp": "2026-10-19T18:45:46.730Z",
+      "command": "python3",
+      "args": [
+        "./capabilities/totalInvoices.py"
+      ],
+      "inputs": {
+        "customerId": "C100",
+        "operationId": "THANKYOU-2026-C100",
+        "periodStart": "2025-01-01",
+        "periodEnd": "2025-12-31",
+        "currency": "USD"
+      }
+    },
+    "timing": {
+      "durationMs": 38.078492
+    },
+    "response": {
+      "exitCode": 0,
+      "stdout": {
+        "invoiceTotal": "5000.00",
+        "invoiceCount": 2
+      },
+      "stderr": ""
+    },
+    "outputs": {
+      "invoiceTotal": "5000.00",
+      "invoiceCount": 2
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-003",
+      "affordance": "calculateCredit",
+      "timestamp": "2026-10-19T18:45:46.769Z",
+      "command": "python3",
+      "args": [
+        "./capabilities/calculateCredit.py"
+      ],
+      "inputs": {
+        "operationId": "THANKYOU-2026-C100",
+        "customerId": "C100",
+        "invoiceTotal": "5000.00",
+        "creditPercent": 10,
+        "currency": "USD"
+      }
+    },
+    "timing": {
+      "durationMs": 38.513344
+    },
+    "response": {
+      "exitCode": 0,
+      "stdout": {
+        "creditAmount": "500.00"
+      },
+      "stderr": ""
+    },
+    "outputs": {
+      "creditAmount": "500.00"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-004",
+      "affordance": "processCredit",
+      "timestamp": "2026-10-19T18:45:46.808Z",
+      "command": "python3",
+      "args": [
+        "./capabilities/processCredit.py"
+      ],
+      "inputs": {
+        "operationId": "THANKYOU-2026-C100",
+        "customerId": "C100",
+        "creditAmount": "500.00",
+        "currency": "USD"
+      }
+    },
+    "timing": {
+      "durationMs": 40.905833
+    },
+    "response": {
+      "exitCode": 0,
+      "stdout": {
+        "creditStatus": "ALREADY_APPLIED"
+      },
+      "stderr": ""
+    },
+    "outputs": {
+      "creditStatus": "ALREADY_APPLIED"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-005",
+      "affordance": "findSalesRep",
+      "timestamp": "2026-10-19T18:45:46.850Z",
+      "command": "python3",
+      "args": [
+        "./capabilities/findSalesRep.py"
+      ],
+      "inputs": {
+        "customerId": "C100",
+        "operationId": "THANKYOU-2026-C100"
+      }
+    },
+    "timing": {
+      "durationMs": 37.427563
+    },
+    "response": {
+      "exitCode": 0,
+      "stdout": {
+        "contactEmail": "rep@example.test",
+        "contactSource": "ACTIVE_REP"
+      },
+      "stderr": ""
+    },
+    "outputs": {
+      "contactEmail": "rep@example.test",
+      "contactSource": "ACTIVE_REP"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-006",
+      "affordance": "prepareThankYou",
+      "timestamp": "2026-10-19T18:45:46.887Z",
+      "command": "python3",
+      "args": [
+        "./capabilities/prepareThankYou.py"
+      ],
+      "inputs": {
+        "operationId": "THANKYOU-2026-C100",
+        "customerId": "C100"
+      }
+    },
+    "timing": {
+      "durationMs": 39.933635
+    },
+    "response": {
+      "exitCode": 0,
+      "stdout": {
+        "messageStatus": "ALREADY_PREPARED"
+      },
+      "stderr": ""
+    },
+    "outputs": {
+      "messageStatus": "ALREADY_PREPARED"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
+      "id": "inv-007",
+      "affordance": "processThankYou",
+      "timestamp": "2026-10-19T18:45:46.928Z",
+      "command": "python3",
+      "args": [
+        "./capabilities/processThankYou.py"
+      ],
+      "inputs": {
+        "operationId": "THANKYOU-2026-C100",
+        "customerId": "C100"
+      }
+    },
+    "timing": {
+      "durationMs": 41.56943
+    },
+    "response": {
+      "exitCode": 0,
+      "stdout": {
+        "deliveryStatus": "ALREADY_SENT"
+      },
+      "stderr": ""
+    },
+    "outputs": {
+      "deliveryStatus": "ALREADY_SENT"
+    },
+    "result": "SUCCESS"
+  }
+]

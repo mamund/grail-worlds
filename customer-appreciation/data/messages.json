@@ -1,0 +1,12 @@
+{
+  "THANKYOU-2026-C100": {
+    "customerId": "C100",
+    "to": [
+      "customer@example.test",
+      "rep@example.test"
+    ],
+    "subject": "Thank you for your business",
+    "body": "We have applied a 500.00 USD appreciation credit to your account.",
+    "status": "SENT"
+  }
+}

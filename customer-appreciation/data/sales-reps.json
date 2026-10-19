@@ -1,0 +1,13 @@
+{
+  "defaultContactEmail": "sales-desk@example.test",
+  "reps": {
+    "R1": {
+      "email": "rep@example.test",
+      "active": true
+    },
+    "R2": {
+      "email": "old-rep@example.test",
+      "active": false
+    }
+  }
+}

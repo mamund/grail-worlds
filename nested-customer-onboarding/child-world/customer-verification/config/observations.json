@@ -3,7 +3,7 @@
     "invocation": {
       "id": "inv-001",
       "affordance": "lookupCustomer",
-      "timestamp": "2026-10-18T17:34:05.587Z",
+      "timestamp": "2026-10-19T13:22:54.324Z",
       "module": "./capabilities/lookup-customer.mjs",
       "function": "execute",
       "inputs": {
@@ -11,7 +11,7 @@
       }
     },
     "timing": {
-      "durationMs": 1.234318
+      "durationMs": 2.396028
     },
     "response": {
       "result": {
@@ -27,32 +27,8 @@
   {
     "invocation": {
       "id": "inv-002",
-      "affordance": "checkIdentity",
-      "timestamp": "2026-10-18T17:34:05.589Z",
-      "module": "./capabilities/check-identity.mjs",
-      "function": "execute",
-      "inputs": {
-        "customerId": "C100"
-      }
-    },
-    "timing": {
-      "durationMs": 0.819017
-    },
-    "response": {
-      "result": {
-        "identityStatus": "REJECTED"
-      }
-    },
-    "outputs": {
-      "identityStatus": "REJECTED"
-    },
-    "result": "SUCCESS"
-  },
-  {
-    "invocation": {
-      "id": "inv-003",
       "affordance": "checkAccount",
-      "timestamp": "2026-10-18T17:34:05.590Z",
+      "timestamp": "2026-10-19T13:22:54.327Z",
       "module": "./capabilities/check-account.mjs",
       "function": "execute",
       "inputs": {
@@ -60,7 +36,7 @@
       }
     },
     "timing": {
-      "durationMs": 0.539016
+      "durationMs": 0.911764
     },
     "response": {
       "result": {
@@ -74,9 +50,33 @@
   },
   {
     "invocation": {
+      "id": "inv-003",
+      "affordance": "checkIdentity",
+      "timestamp": "2026-10-19T13:22:54.328Z",
+      "module": "./capabilities/check-identity.mjs",
+      "function": "execute",
+      "inputs": {
+        "customerId": "C100"
+      }
+    },
+    "timing": {
+      "durationMs": 0.530922
+    },
+    "response": {
+      "result": {
+        "identityStatus": "REJECTED"
+      }
+    },
+    "outputs": {
+      "identityStatus": "REJECTED"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "invocation": {
       "id": "inv-004",
       "affordance": "completeVerification",
-      "timestamp": "2026-10-18T17:34:05.590Z",
+      "timestamp": "2026-10-19T13:22:54.329Z",
       "module": "./capabilities/complete-verification.mjs",
       "function": "execute",
       "inputs": {
@@ -86,7 +86,7 @@
       }
     },
     "timing": {
-      "durationMs": 0.527821
+      "durationMs": 1.042351
     },
     "response": {
       "result": {

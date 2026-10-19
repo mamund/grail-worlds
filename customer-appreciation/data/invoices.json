@@ -1,0 +1,34 @@
+[
+  {
+    "id": "I1",
+    "customerId": "C100",
+    "date": "2025-02-12",
+    "amount": "3000.00",
+    "currency": "USD",
+    "status": "ISSUED"
+  },
+  {
+    "id": "I2",
+    "customerId": "C100",
+    "date": "2025-08-04",
+    "amount": "2000.00",
+    "currency": "USD",
+    "status": "PAID"
+  },
+  {
+    "id": "I3",
+    "customerId": "C100",
+    "date": "2025-05-01",
+    "amount": "100.00",
+    "currency": "USD",
+    "status": "VOID"
+  },
+  {
+    "id": "I4",
+    "customerId": "C100",
+    "date": "2024-10-01",
+    "amount": "100.00",
+    "currency": "USD",
+    "status": "PAID"
+  }
+]

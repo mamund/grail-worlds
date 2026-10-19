@@ -1,0 +1,17 @@
+{
+  "C100": {
+    "name": "Acme Tools",
+    "email": "customer@example.test",
+    "salesRepId": "R1"
+  },
+  "C200": {
+    "name": "Zero Activity Co",
+    "email": "zero@example.test",
+    "salesRepId": null
+  },
+  "C300": {
+    "name": "No Email Co",
+    "email": null,
+    "salesRepId": "R1"
+  }
+}

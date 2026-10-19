@@ -1,0 +1,218 @@
+{
+  "findCustomer": {
+    "id": "aff-findCustomer",
+    "action": "findCustomer",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "customerId": "$inputs.customerId"
+    },
+    "effects": [
+      "customerLocated"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "python3",
+      "args": [
+        "./capabilities/findCustomer.py"
+      ],
+      "outputs": {
+        "customerId": {
+          "from": "stdout",
+          "path": "customerId"
+        },
+        "customerEmail": {
+          "from": "stdout",
+          "path": "customerEmail"
+        }
+      }
+    }
+  },
+  "findSalesRep": {
+    "id": "aff-findSalesRep",
+    "action": "findSalesRep",
+    "type": "task",
+    "preconditions": [
+      "customerLocated"
+    ],
+    "inputs": {
+      "customerId": "$inputs.customerId",
+      "operationId": "$inputs.operationId"
+    },
+    "effects": [
+      "salesContactResolved"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "python3",
+      "args": [
+        "./capabilities/findSalesRep.py"
+      ],
+      "outputs": {
+        "contactEmail": {
+          "from": "stdout",
+          "path": "contactEmail"
+        },
+        "contactSource": {
+          "from": "stdout",
+          "path": "contactSource"
+        }
+      }
+    }
+  },
+  "totalInvoices": {
+    "id": "aff-totalInvoices",
+    "action": "totalInvoices",
+    "type": "task",
+    "preconditions": [
+      "customerLocated"
+    ],
+    "inputs": {
+      "customerId": "$inputs.customerId",
+      "operationId": "$inputs.operationId",
+      "periodStart": "$inputs.periodStart",
+      "periodEnd": "$inputs.periodEnd",
+      "currency": "$inputs.currency"
+    },
+    "effects": [
+      "invoiceTotalComputed"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "python3",
+      "args": [
+        "./capabilities/totalInvoices.py"
+      ],
+      "outputs": {
+        "invoiceTotal": {
+          "from": "stdout",
+          "path": "invoiceTotal"
+        },
+        "invoiceCount": {
+          "from": "stdout",
+          "path": "invoiceCount"
+        }
+      }
+    }
+  },
+  "calculateCredit": {
+    "id": "aff-calculateCredit",
+    "action": "calculateCredit",
+    "type": "task",
+    "preconditions": [
+      "invoiceTotalComputed"
+    ],
+    "inputs": {
+      "operationId": "$inputs.operationId",
+      "customerId": "$inputs.customerId",
+      "invoiceTotal": "$outputs.latest.invoiceTotal",
+      "creditPercent": "$inputs.creditPercent",
+      "currency": "$inputs.currency"
+    },
+    "effects": [
+      "creditCalculated"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "python3",
+      "args": [
+        "./capabilities/calculateCredit.py"
+      ],
+      "outputs": {
+        "creditAmount": {
+          "from": "stdout",
+          "path": "creditAmount"
+        }
+      }
+    }
+  },
+  "processCredit": {
+    "id": "aff-processCredit",
+    "action": "processCredit",
+    "type": "task",
+    "preconditions": [
+      "customerLocated",
+      "creditCalculated"
+    ],
+    "inputs": {
+      "operationId": "$inputs.operationId",
+      "customerId": "$inputs.customerId",
+      "creditAmount": "$outputs.latest.creditAmount",
+      "currency": "$inputs.currency"
+    },
+    "effects": [
+      "creditProcessed"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "python3",
+      "args": [
+        "./capabilities/processCredit.py"
+      ],
+      "outputs": {
+        "creditStatus": {
+          "from": "stdout",
+          "path": "creditStatus"
+        }
+      }
+    }
+  },
+  "prepareThankYou": {
+    "id": "aff-prepareThankYou",
+    "action": "prepareThankYou",
+    "type": "task",
+    "preconditions": [
+      "customerLocated",
+      "salesContactResolved",
+      "creditProcessed"
+    ],
+    "inputs": {
+      "operationId": "$inputs.operationId",
+      "customerId": "$inputs.customerId"
+    },
+    "effects": [
+      "thankYouPreparationProcessed"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "python3",
+      "args": [
+        "./capabilities/prepareThankYou.py"
+      ],
+      "outputs": {
+        "messageStatus": {
+          "from": "stdout",
+          "path": "messageStatus"
+        }
+      }
+    }
+  },
+  "processThankYou": {
+    "id": "aff-processThankYou",
+    "action": "processThankYou",
+    "type": "task",
+    "preconditions": [
+      "thankYouPreparationProcessed"
+    ],
+    "inputs": {
+      "operationId": "$inputs.operationId",
+      "customerId": "$inputs.customerId"
+    },
+    "effects": [
+      "customerAppreciationProcessed"
+    ],
+    "binding": {
+      "protocol": "stdio",
+      "command": "python3",
+      "args": [
+        "./capabilities/processThankYou.py"
+      ],
+      "outputs": {
+        "deliveryStatus": {
+          "from": "stdout",
+          "path": "deliveryStatus"
+        }
+      }
+    }
+  }
+}

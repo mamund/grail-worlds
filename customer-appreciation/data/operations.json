@@ -1,0 +1,41 @@
+{
+  "THANKYOU-2026-C100": {
+    "customerId": "C100",
+    "invoiceBasis": {
+      "periodStart": "2025-01-01",
+      "periodEnd": "2025-12-31",
+      "currency": "USD"
+    },
+    "invoiceTotal": "5000.00",
+    "invoiceCount": 2,
+    "invoiceIds": [
+      "I1",
+      "I2"
+    ],
+    "creditPercent": "10",
+    "creditAmount": "500.00",
+    "creditStatus": "ALREADY_APPLIED",
+    "contactEmail": "rep@example.test",
+    "contactSource": "ACTIVE_REP",
+    "messageStatus": "ALREADY_PREPARED",
+    "deliveryStatus": "ALREADY_SENT"
+  },
+  "THANKYOU-2026-C200": {
+    "customerId": "C200",
+    "contactEmail": "sales-desk@example.test",
+    "contactSource": "DEFAULT",
+    "invoiceBasis": {
+      "periodStart": "2025-01-01",
+      "periodEnd": "2025-12-31",
+      "currency": "USD"
+    },
+    "invoiceTotal": "0.00",
+    "invoiceCount": 0,
+    "invoiceIds": [],
+    "creditPercent": "10",
+    "creditAmount": "0.00",
+    "creditStatus": "NOT_APPLICABLE",
+    "messageStatus": "NOT_APPLICABLE",
+    "deliveryStatus": "NOT_APPLICABLE"
+  }
+}

@@ -22,8 +22,11 @@ This repository collects self-contained worlds you can run, inspect, and adapt. 
 | [`interactive-refund`](./interactive-refund/) | Human-in-the-loop STDIO capability and a completed refund determination, including zero-dollar outcomes | Node.js; interactive terminal |
 | [`purchase-management`](./purchase-management/) | Purchase review and processing across HTTP, Node, and interactive STDIO bindings; approved, rejected, and deferred outcomes | Node.js; local HTTP service (included); interactive terminal |
 | [`document-processing`](./document-processing/) | Python STDIO bindings, cross-affordance outputs, document classification, and recovery through alternative loaders | Python 3; GRAIL CLI |
+| [`customer-appreciation`](./customer-appreciation/) | Occurrences versus domain outcomes, zero-credit no-op success, operation-scoped idempotency, and safe repeated pursuits | Python 3; GRAIL CLI; Unix-like environment |
 
 The `document-processing` example uses Python 3 standard-library scripts and does not require an external service. Its README includes successful processing, FAIL recovery, and exhausted-alternatives tests.
+
+The `customer-appreciation` world simulates invoice-based credits and thank-you messages using local JSON data. It posts no real credits and sends no real emails. Its seven Python tests pass, and GRAIL pursuits have been validated for a positive credit (C100), zero credit (C200), and a repeated C100 operation without duplicate actions.
 
 The Ollama examples may have additional model and setup requirements. Consult their READMEs before running them.
 
@@ -64,7 +67,7 @@ world-name/
 └── capabilities/
 ```
 
-Some worlds use `service/`, `scripts/`, or other directories where appropriate.
+Some worlds use `service/`, `scripts/`, `data/`, `tests/`, or other directories where appropriate. Python-only worlds need not include `package.json`.
 
 - **`goal.json`** names the condition the pursuit aims to establish, using the `goal` key.
 - **`registry.json`** describes affordances, their preconditions, effects, inputs, and execution bindings.
@@ -76,7 +79,7 @@ GRAIL's world state tracks the conditions relevant to pursuit. Domain-specific v
 
 ## Suggested learning path
 
-Start with `hello-grail`, then `customer-lookup`, followed by `customer-onboarding`. Next, explore `nested-customer-onboarding` to see how one GRAIL world invokes another through `runGrailWorld()`. The parent and child maintain independent environments, exchange domain data, and complete their pursuits even when verification is rejected and activation is denied. Explore `failure-recovery` to see how alternative affordances support continued pursuit after a failure. The remaining examples show how GRAIL integrates local models, larger support scenarios, and human interaction. Use `document-processing` to explore Python STDIO bindings, `$outputs.latest.*` references, and alternative affordances. Finish with `purchase-management` for a domain-oriented example that combines multiple binding types and records approved, rejected, or deferred purchase decisions.
+Start with `hello-grail`, then `customer-lookup`, followed by `customer-onboarding`. Next, explore `nested-customer-onboarding` to see how one GRAIL world invokes another through `runGrailWorld()`. The parent and child maintain independent environments, exchange domain data, and complete their pursuits even when verification is rejected and activation is denied. Explore `failure-recovery` to see how alternative affordances support continued pursuit after a failure. The remaining examples show how GRAIL integrates local models, larger support scenarios, and human interaction. Use `document-processing` to explore Python STDIO bindings, `$outputs.latest.*` references, and alternative affordances. Continue with `customer-appreciation` to see how a successful occurrence can have a `NOT_APPLICABLE` domain outcome, and how repeated pursuits reconcile credits and messages using a stable operation ID. Finish with `purchase-management` for a domain-oriented example that combines multiple binding types and records approved, rejected, or deferred purchase decisions.
 
 ## Using these examples
 
