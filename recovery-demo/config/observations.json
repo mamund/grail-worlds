@@ -1,0 +1,100 @@
+[
+  {
+    "phase": "forward",
+    "pursuitId": "36d6e90f-e92d-4f1b-82be-57ebc72bad52",
+    "invocation": {
+      "id": "b70d6ed1-0176-4c81-b1d9-df864b38898f",
+      "affordance": "reserveInventory",
+      "timestamp": "2026-10-22T18:01:39.791Z",
+      "module": "./capabilities/operations.mjs",
+      "function": "reserveInventory",
+      "inputs": {}
+    },
+    "timing": {
+      "durationMs": 2.903393
+    },
+    "response": {
+      "result": {
+        "result": "SUCCESS"
+      }
+    },
+    "outputs": {},
+    "result": "SUCCESS"
+  },
+  {
+    "phase": "forward",
+    "pursuitId": "36d6e90f-e92d-4f1b-82be-57ebc72bad52",
+    "invocation": {
+      "id": "b99c32f6-42b6-4d32-9e27-2edc4cc70166",
+      "affordance": "allocateShipping",
+      "timestamp": "2026-10-22T18:01:39.794Z",
+      "module": "./capabilities/operations.mjs",
+      "function": "allocateShipping",
+      "inputs": {}
+    },
+    "timing": {
+      "durationMs": 0.883149
+    },
+    "response": {
+      "result": {
+        "result": "SUCCESS"
+      }
+    },
+    "outputs": {},
+    "result": "SUCCESS"
+  },
+  {
+    "phase": "forward",
+    "pursuitId": "36d6e90f-e92d-4f1b-82be-57ebc72bad52",
+    "invocation": {
+      "id": "715c984e-1014-4938-8b0a-b3adae11fba6",
+      "affordance": "finalizeOrder",
+      "timestamp": "2026-10-22T18:01:39.795Z",
+      "module": "./capabilities/operations.mjs",
+      "function": "finalizeOrder",
+      "inputs": {}
+    },
+    "timing": {
+      "durationMs": 0.166678
+    },
+    "response": {
+      "error": "Demo: finalization service unavailable"
+    },
+    "outputs": {},
+    "result": "FAIL"
+  },
+  {
+    "phase": "recovery",
+    "pursuitId": "36d6e90f-e92d-4f1b-82be-57ebc72bad52",
+    "originalInvocationId": "b99c32f6-42b6-4d32-9e27-2edc4cc70166",
+    "invocation": {
+      "id": "d8bd3716-5650-407a-aa83-e318d5f06215",
+      "affordance": "allocateShipping",
+      "timestamp": "2026-10-22T18:01:39.796Z"
+    },
+    "timing": {
+      "durationMs": 0.8903009999999938
+    },
+    "response": {
+      "result": "SUCCESS"
+    },
+    "result": "RECOVERED"
+  },
+  {
+    "phase": "recovery",
+    "pursuitId": "36d6e90f-e92d-4f1b-82be-57ebc72bad52",
+    "originalInvocationId": "b70d6ed1-0176-4c81-b1d9-df864b38898f",
+    "invocation": {
+      "id": "97fd7241-aaad-47b1-bfaa-56c9c8d6e80a",
+      "affordance": "reserveInventory",
+      "timestamp": "2026-10-22T18:01:39.797Z"
+    },
+    "timing": {
+      "durationMs": 0.47763199999999983
+    },
+    "response": {
+      "result": "SUCCESS"
+    },
+    "result": "RECOVERED"
+  }
+]

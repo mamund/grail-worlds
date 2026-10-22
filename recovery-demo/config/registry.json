@@ -1,0 +1,53 @@
+{
+  "reserveInventory": {
+    "action": "reserveInventory",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {},
+    "effects": [
+      "inventoryReserved"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/operations.mjs",
+      "function": "reserveInventory",
+      "recover": "releaseInventory"
+    },
+    "id": "reserveInventory"
+  },
+  "allocateShipping": {
+    "action": "allocateShipping",
+    "type": "task",
+    "preconditions": [
+      "inventoryReserved"
+    ],
+    "inputs": {},
+    "effects": [
+      "shippingAllocated"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/operations.mjs",
+      "function": "allocateShipping",
+      "recover": "releaseShipping"
+    },
+    "id": "allocateShipping"
+  },
+  "finalizeOrder": {
+    "action": "finalizeOrder",
+    "type": "task",
+    "preconditions": [
+      "shippingAllocated"
+    ],
+    "inputs": {},
+    "effects": [
+      "orderFinalized"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/operations.mjs",
+      "function": "finalizeOrder"
+    },
+    "id": "finalizeOrder"
+  }
+}
