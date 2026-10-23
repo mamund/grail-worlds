@@ -1,40 +1,41 @@
 [
   {
     "phase": "forward",
-    "pursuitId": "1d0ef2b0-26f0-479b-adb3-bda46792fecd",
+    "pursuitId": "5fce6d8b-5709-4270-b4a7-aa5ac568ce00",
     "invocation": {
-      "id": "6c311193-0a29-43e9-9b4e-c5f3042f9240",
-      "affordance": "validateSupplier",
-      "timestamp": "2026-10-23T16:47:44.942Z",
+      "id": "1322ae57-2186-492b-bf8b-d236590f2d55",
+      "affordance": "validateProduct",
+      "timestamp": "2026-10-23T17:51:22.091Z",
       "module": "./capabilities/validate-field.mjs",
       "function": "validateField",
       "inputs": {
-        "value": "SUP-999",
-        "ruleId": "supplier"
+        "value": "PRD-300",
+        "ruleId": "product"
       }
     },
     "timing": {
-      "durationMs": 1.375142
+      "durationMs": 2.266573
     },
     "response": {
       "result": {
-        "valid": false,
-        "reason": "Supplier is not eligible"
+        "value": "PRD-300",
+        "valid": true,
+        "reason": "Validation passed"
       }
     },
     "outputs": {
-      "valid": false,
-      "reason": "Supplier is not eligible"
+      "valid": true,
+      "reason": "Validation passed"
     },
     "result": "SUCCESS"
   },
   {
     "phase": "forward",
-    "pursuitId": "1d0ef2b0-26f0-479b-adb3-bda46792fecd",
+    "pursuitId": "5fce6d8b-5709-4270-b4a7-aa5ac568ce00",
     "invocation": {
-      "id": "f3e46a47-5c21-4be8-a806-0d5c29a88a9f",
+      "id": "c46c299f-e0cf-4592-a67e-8953f4be5d74",
       "affordance": "validateQuantity",
-      "timestamp": "2026-10-23T16:47:44.944Z",
+      "timestamp": "2026-10-23T17:51:22.094Z",
       "module": "./capabilities/validate-field.mjs",
       "function": "validateField",
       "inputs": {
@@ -43,10 +44,11 @@
       }
     },
     "timing": {
-      "durationMs": 0.140701
+      "durationMs": 0.234493
     },
     "response": {
       "result": {
+        "value": 120,
         "valid": false,
         "reason": "Quantity must be an integer from 1 to 100"
       }
@@ -59,40 +61,41 @@
   },
   {
     "phase": "forward",
-    "pursuitId": "1d0ef2b0-26f0-479b-adb3-bda46792fecd",
+    "pursuitId": "5fce6d8b-5709-4270-b4a7-aa5ac568ce00",
     "invocation": {
-      "id": "0e96b468-d967-48f6-9660-ad2d10aa0761",
-      "affordance": "validateProduct",
-      "timestamp": "2026-10-23T16:47:44.944Z",
+      "id": "6500223d-6027-4c2b-b67e-6eefb67ce2eb",
+      "affordance": "validateSupplier",
+      "timestamp": "2026-10-23T17:51:22.095Z",
       "module": "./capabilities/validate-field.mjs",
       "function": "validateField",
       "inputs": {
-        "value": "PRD-300",
-        "ruleId": "product"
+        "value": "SUP-999",
+        "ruleId": "supplier"
       }
     },
     "timing": {
-      "durationMs": 0.12108
+      "durationMs": 0.218418
     },
     "response": {
       "result": {
-        "valid": true,
-        "reason": "Validation passed"
+        "value": "SUP-999",
+        "valid": false,
+        "reason": "Supplier is not eligible"
       }
     },
     "outputs": {
-      "valid": true,
-      "reason": "Validation passed"
+      "valid": false,
+      "reason": "Supplier is not eligible"
     },
     "result": "SUCCESS"
   },
   {
     "phase": "forward",
-    "pursuitId": "1d0ef2b0-26f0-479b-adb3-bda46792fecd",
+    "pursuitId": "5fce6d8b-5709-4270-b4a7-aa5ac568ce00",
     "invocation": {
-      "id": "fe5ded3a-a879-4299-9b13-e073eb3c68cd",
+      "id": "ba3a36be-0b15-4323-b0a2-2f36c7e72a61",
       "affordance": "validateAccount",
-      "timestamp": "2026-10-23T16:47:44.945Z",
+      "timestamp": "2026-10-23T17:51:22.095Z",
       "module": "./capabilities/validate-field.mjs",
       "function": "validateField",
       "inputs": {
@@ -101,10 +104,11 @@
       }
     },
     "timing": {
-      "durationMs": 0.255626
+      "durationMs": 0.409436
     },
     "response": {
       "result": {
+        "value": "ACC-200",
         "valid": true,
         "reason": "Validation passed"
       }
@@ -117,11 +121,11 @@
   },
   {
     "phase": "forward",
-    "pursuitId": "1d0ef2b0-26f0-479b-adb3-bda46792fecd",
+    "pursuitId": "5fce6d8b-5709-4270-b4a7-aa5ac568ce00",
     "invocation": {
-      "id": "d514bfa7-08ff-47b6-9235-c0d33664c6c0",
+      "id": "7734762c-e547-492b-9f66-b7d25edcb115",
       "affordance": "evaluatePurchaseOrder",
-      "timestamp": "2026-10-23T16:47:44.945Z",
+      "timestamp": "2026-10-23T17:51:22.096Z",
       "module": "./capabilities/evaluate-order.mjs",
       "function": "evaluateOrder",
       "inputs": {
@@ -136,7 +140,7 @@
       }
     },
     "timing": {
-      "durationMs": 0.838117
+      "durationMs": 1.995038
     },
     "response": {
       "result": {
