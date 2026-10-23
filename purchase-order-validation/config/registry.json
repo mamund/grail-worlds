@@ -1,0 +1,153 @@
+{
+  "validateSupplier": {
+    "id": "validateSupplier",
+    "action": "validateSupplier",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "value": "$inputs.supplierId",
+      "ruleId": "supplier"
+    },
+    "effects": [
+      "supplierValidated"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/validate-field.mjs",
+      "function": "validateField",
+      "outputs": {
+        "valid": {
+          "from": "result",
+          "path": "valid"
+        },
+        "reason": {
+          "from": "result",
+          "path": "reason"
+        }
+      }
+    }
+  },
+  "validateAccount": {
+    "id": "validateAccount",
+    "action": "validateAccount",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "value": "$inputs.accountId",
+      "ruleId": "account"
+    },
+    "effects": [
+      "accountValidated"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/validate-field.mjs",
+      "function": "validateField",
+      "outputs": {
+        "valid": {
+          "from": "result",
+          "path": "valid"
+        },
+        "reason": {
+          "from": "result",
+          "path": "reason"
+        }
+      }
+    }
+  },
+  "validateProduct": {
+    "id": "validateProduct",
+    "action": "validateProduct",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "value": "$inputs.productCode",
+      "ruleId": "product"
+    },
+    "effects": [
+      "productValidated"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/validate-field.mjs",
+      "function": "validateField",
+      "outputs": {
+        "valid": {
+          "from": "result",
+          "path": "valid"
+        },
+        "reason": {
+          "from": "result",
+          "path": "reason"
+        }
+      }
+    }
+  },
+  "validateQuantity": {
+    "id": "validateQuantity",
+    "action": "validateQuantity",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "value": "$inputs.quantity",
+      "ruleId": "quantity"
+    },
+    "effects": [
+      "quantityValidated"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/validate-field.mjs",
+      "function": "validateField",
+      "outputs": {
+        "valid": {
+          "from": "result",
+          "path": "valid"
+        },
+        "reason": {
+          "from": "result",
+          "path": "reason"
+        }
+      }
+    }
+  },
+  "evaluatePurchaseOrder": {
+    "id": "evaluatePurchaseOrder",
+    "action": "evaluatePurchaseOrder",
+    "type": "task",
+    "preconditions": [
+      "supplierValidated",
+      "accountValidated",
+      "productValidated",
+      "quantityValidated"
+    ],
+    "inputs": {
+      "supplierValid": "$outputs.validateSupplier.latest.valid",
+      "supplierReason": "$outputs.validateSupplier.latest.reason",
+      "accountValid": "$outputs.validateAccount.latest.valid",
+      "accountReason": "$outputs.validateAccount.latest.reason",
+      "productValid": "$outputs.validateProduct.latest.valid",
+      "productReason": "$outputs.validateProduct.latest.reason",
+      "quantityValid": "$outputs.validateQuantity.latest.valid",
+      "quantityReason": "$outputs.validateQuantity.latest.reason"
+    },
+    "effects": [
+      "purchaseOrderValidated"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/evaluate-order.mjs",
+      "function": "evaluateOrder",
+      "outputs": {
+        "decision": {
+          "from": "result",
+          "path": "decision"
+        },
+        "failures": {
+          "from": "result",
+          "path": "failures"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,171 @@
+[
+  {
+    "phase": "forward",
+    "pursuitId": "1d0ef2b0-26f0-479b-adb3-bda46792fecd",
+    "invocation": {
+      "id": "6c311193-0a29-43e9-9b4e-c5f3042f9240",
+      "affordance": "validateSupplier",
+      "timestamp": "2026-10-23T16:47:44.942Z",
+      "module": "./capabilities/validate-field.mjs",
+      "function": "validateField",
+      "inputs": {
+        "value": "SUP-999",
+        "ruleId": "supplier"
+      }
+    },
+    "timing": {
+      "durationMs": 1.375142
+    },
+    "response": {
+      "result": {
+        "valid": false,
+        "reason": "Supplier is not eligible"
+      }
+    },
+    "outputs": {
+      "valid": false,
+      "reason": "Supplier is not eligible"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "phase": "forward",
+    "pursuitId": "1d0ef2b0-26f0-479b-adb3-bda46792fecd",
+    "invocation": {
+      "id": "f3e46a47-5c21-4be8-a806-0d5c29a88a9f",
+      "affordance": "validateQuantity",
+      "timestamp": "2026-10-23T16:47:44.944Z",
+      "module": "./capabilities/validate-field.mjs",
+      "function": "validateField",
+      "inputs": {
+        "value": 120,
+        "ruleId": "quantity"
+      }
+    },
+    "timing": {
+      "durationMs": 0.140701
+    },
+    "response": {
+      "result": {
+        "valid": false,
+        "reason": "Quantity must be an integer from 1 to 100"
+      }
+    },
+    "outputs": {
+      "valid": false,
+      "reason": "Quantity must be an integer from 1 to 100"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "phase": "forward",
+    "pursuitId": "1d0ef2b0-26f0-479b-adb3-bda46792fecd",
+    "invocation": {
+      "id": "0e96b468-d967-48f6-9660-ad2d10aa0761",
+      "affordance": "validateProduct",
+      "timestamp": "2026-10-23T16:47:44.944Z",
+      "module": "./capabilities/validate-field.mjs",
+      "function": "validateField",
+      "inputs": {
+        "value": "PRD-300",
+        "ruleId": "product"
+      }
+    },
+    "timing": {
+      "durationMs": 0.12108
+    },
+    "response": {
+      "result": {
+        "valid": true,
+        "reason": "Validation passed"
+      }
+    },
+    "outputs": {
+      "valid": true,
+      "reason": "Validation passed"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "phase": "forward",
+    "pursuitId": "1d0ef2b0-26f0-479b-adb3-bda46792fecd",
+    "invocation": {
+      "id": "fe5ded3a-a879-4299-9b13-e073eb3c68cd",
+      "affordance": "validateAccount",
+      "timestamp": "2026-10-23T16:47:44.945Z",
+      "module": "./capabilities/validate-field.mjs",
+      "function": "validateField",
+      "inputs": {
+        "value": "ACC-200",
+        "ruleId": "account"
+      }
+    },
+    "timing": {
+      "durationMs": 0.255626
+    },
+    "response": {
+      "result": {
+        "valid": true,
+        "reason": "Validation passed"
+      }
+    },
+    "outputs": {
+      "valid": true,
+      "reason": "Validation passed"
+    },
+    "result": "SUCCESS"
+  },
+  {
+    "phase": "forward",
+    "pursuitId": "1d0ef2b0-26f0-479b-adb3-bda46792fecd",
+    "invocation": {
+      "id": "d514bfa7-08ff-47b6-9235-c0d33664c6c0",
+      "affordance": "evaluatePurchaseOrder",
+      "timestamp": "2026-10-23T16:47:44.945Z",
+      "module": "./capabilities/evaluate-order.mjs",
+      "function": "evaluateOrder",
+      "inputs": {
+        "supplierValid": false,
+        "supplierReason": "Supplier is not eligible",
+        "accountValid": true,
+        "accountReason": "Validation passed",
+        "productValid": true,
+        "productReason": "Validation passed",
+        "quantityValid": false,
+        "quantityReason": "Quantity must be an integer from 1 to 100"
+      }
+    },
+    "timing": {
+      "durationMs": 0.838117
+    },
+    "response": {
+      "result": {
+        "decision": "REJECTED",
+        "failures": [
+          {
+            "check": "supplier",
+            "reason": "Supplier is not eligible"
+          },
+          {
+            "check": "quantity",
+            "reason": "Quantity must be an integer from 1 to 100"
+          }
+        ]
+      }
+    },
+    "outputs": {
+      "decision": "REJECTED",
+      "failures": [
+        {
+          "check": "supplier",
+          "reason": "Supplier is not eligible"
+        },
+        {
+          "check": "quantity",
+          "reason": "Quantity must be an integer from 1 to 100"
+        }
+      ]
+    },
+    "result": "SUCCESS"
+  }
+]

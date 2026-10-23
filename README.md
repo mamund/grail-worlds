@@ -21,9 +21,12 @@ This repository collects self-contained worlds you can run, inspect, and adapt. 
 | [`message-classification`](./message-classification/) | LLM-backed and rules-based classification through interchangeable affordances | Node.js; Ollama and a local model for the LLM path |
 | [`customer-support`](./customer-support/) | Customer support response preparation, mixed deterministic and LLM capabilities, and repeated pursuits from a batch script | Node.js; Ollama and configured local models |
 | [`interactive-refund`](./interactive-refund/) | Human-in-the-loop STDIO capability and a completed refund determination, including zero-dollar outcomes | Node.js; interactive terminal |
+| [`purchase-order-validation`](./purchase-order-validation/) | Shared Node.js capability across four affordances, literal `ruleId` inputs, named outputs, and business validation outcomes | Node.js 22+; GRAIL CLI with literal-input support |
 | [`purchase-management`](./purchase-management/) | Purchase review and processing across HTTP, Node, and interactive STDIO bindings; approved, rejected, and deferred outcomes | Node.js; local HTTP service (included); interactive terminal |
 | [`document-processing`](./document-processing/) | Python STDIO bindings, cross-affordance outputs, document classification, and recovery through alternative loaders | Python 3; GRAIL CLI |
 | [`customer-appreciation`](./customer-appreciation/) | Occurrences versus domain outcomes, zero-credit no-op success, operation-scoped idempotency, and safe repeated pursuits | Python 3; GRAIL CLI; Unix-like environment |
+
+The `purchase-order-validation` world runs four independent checks through one Node.js validation function. It uses literal `ruleId` values and named output references such as `$outputs.validateSupplier.latest.valid` to aggregate results independently of execution order. All three scenarios reach the goal, including rejected orders; the literal-input behavior requires a GRAIL build containing the resolver fix.
 
 The `document-processing` example uses Python 3 standard-library scripts and does not require an external service. Its README includes successful processing, FAIL recovery, and exhausted-alternatives tests.
 
@@ -52,7 +55,7 @@ npx grail validate --config ./config
 npx grail run --config ./config --output=json
 ```
 
-Some worlds require a local service, an Ollama installation, an interactive terminal, or a newer local GRAIL build. Each world documents its setup and expected result. In `purchase-management`, one pursuit handles one purchase request; run another pursuit to process another request.
+Some worlds require a local service, an Ollama installation, an interactive terminal, or a newer local GRAIL build. `purchase-order-validation` requires literal-input support; older installed CLI versions may block on `ruleId`. Each world documents its setup and expected result. In `purchase-management`, one pursuit handles one purchase request; run another pursuit to process another request.
 
 ## How a world is organized
 
@@ -82,7 +85,7 @@ GRAIL's world state tracks the conditions relevant to pursuit. Domain-specific v
 
 ## Suggested learning path
 
-Start with `hello-grail`, then `customer-lookup`, followed by `customer-onboarding`. Next, explore `nested-customer-onboarding` to see how one GRAIL world invokes another through `runGrailWorld()`. The parent and child maintain independent environments, exchange domain data, and complete their pursuits even when verification is rejected and activation is denied. Explore `failure-recovery` to see how alternative affordances support continued pursuit after a failure. Then use `recovery-demo` to see how GRAIL compensates completed side effects when the overall pursuit becomes unresolvable. The remaining examples show how GRAIL integrates local models, larger support scenarios, and human interaction. Use `document-processing` to explore Python STDIO bindings, `$outputs.latest.*` references, and alternative affordances. Continue with `customer-appreciation` to see how a successful occurrence can have a `NOT_APPLICABLE` domain outcome, and how repeated pursuits reconcile credits and messages using a stable operation ID. Finish with `purchase-management` for a domain-oriented example that combines multiple binding types and records approved, rejected, or deferred purchase decisions.
+Start with `hello-grail`, then `customer-lookup`, followed by `customer-onboarding`. Next, explore `nested-customer-onboarding` to see how one GRAIL world invokes another through `runGrailWorld()`. The parent and child maintain independent environments, exchange domain data, and complete their pursuits even when verification is rejected and activation is denied. Explore `failure-recovery` to see how alternative affordances support continued pursuit after a failure. Then use `recovery-demo` to see how GRAIL compensates completed side effects when the overall pursuit becomes unresolvable. The remaining examples show how GRAIL integrates local models, larger support scenarios, and human interaction. Use `document-processing` to explore Python STDIO bindings, `$outputs.latest.*` references, and alternative affordances. Continue with `customer-appreciation` to see how a successful occurrence can have a `NOT_APPLICABLE` domain outcome, and how repeated pursuits reconcile credits and messages using a stable operation ID. Next, use `purchase-order-validation` to examine reuse of one Node.js capability by multiple affordances, named output references, and the difference between a successful pursuit and a rejected business decision. Finish with `purchase-management` for a domain-oriented example that combines multiple binding types and records approved, rejected, or deferred purchase decisions.
 
 ## Using these examples
 
