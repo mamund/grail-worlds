@@ -1,0 +1,16 @@
+{
+  "name": "grail-world-cyclic-dependencies",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test:cycle": "node api-run.js cycle",
+    "test:control": "node api-run.js control",
+    "test": "node test-e4.js"
+  },
+  "dependencies": {
+    "@mamund/grail": "0.3.0-beta.1"
+  }
+}

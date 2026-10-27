@@ -1,0 +1,18 @@
+mca@mamund-ws:.../cyclic-dependencies$ npm run test:cycle
+
+> test:cycle
+> node api-run.js cycle
+
+{
+  "scenario": "cycle",
+  "timeoutMs": 3000,
+  "elapsedMs": 3077,
+  "timedOut": true,
+  "exitCode": null,
+  "signal": "SIGKILL",
+  "error": "spawnSync /home/mca/.nvm/versions/node/v22.14.0/bin/node ETIMEDOUT",
+  "completed": false
+}
+TIMEOUT: child process killed; absence of completed trace is expected. See worker logs.
+mca@mamund-ws:.../cyclic-dependencies$ 
+

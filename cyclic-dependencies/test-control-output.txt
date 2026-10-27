@@ -1,0 +1,18 @@
+mca@mamund-ws:.../cyclic-dependencies$ npm run test:control
+
+> test:control
+> node api-run.js control
+
+{
+  "scenario": "control",
+  "timeoutMs": 3000,
+  "elapsedMs": 227,
+  "timedOut": false,
+  "exitCode": 0,
+  "signal": null,
+  "error": null,
+  "completed": true
+}
+mca@mamund-ws:.../cyclic-dependencies$ 
+
+

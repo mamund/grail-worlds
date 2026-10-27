@@ -1,0 +1,134 @@
+[
+  {
+    "type": "affordance.selected",
+    "affordance": "activateCustomer",
+    "candidates": [
+      "activateCustomer"
+    ],
+    "sequence": 1
+  },
+  {
+    "type": "stack.push",
+    "affordance": "activateCustomer",
+    "result": null,
+    "stack": [
+      "activateCustomer"
+    ],
+    "sequence": 2
+  },
+  {
+    "type": "condition.selected",
+    "condition": "accountPrepared",
+    "candidates": [
+      "accountPrepared",
+      "verificationCompleted"
+    ],
+    "sequence": 3
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "prepareAccount",
+    "candidates": [
+      "prepareAccount"
+    ],
+    "sequence": 4
+  },
+  {
+    "type": "stack.push",
+    "affordance": "prepareAccount",
+    "result": null,
+    "stack": [
+      "activateCustomer",
+      "prepareAccount"
+    ],
+    "sequence": 5
+  },
+  {
+    "type": "condition.selected",
+    "condition": "customerCreated",
+    "candidates": [
+      "customerCreated"
+    ],
+    "sequence": 6
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "createCustomer",
+    "candidates": [
+      "createCustomer"
+    ],
+    "sequence": 7
+  },
+  {
+    "type": "stack.push",
+    "affordance": "createCustomer",
+    "result": null,
+    "stack": [
+      "activateCustomer",
+      "prepareAccount",
+      "createCustomer"
+    ],
+    "sequence": 8
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "createCustomer",
+    "result": "SUCCESS",
+    "stack": [
+      "activateCustomer",
+      "prepareAccount"
+    ],
+    "sequence": 9
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "prepareAccount",
+    "result": "SUCCESS",
+    "stack": [
+      "activateCustomer"
+    ],
+    "sequence": 10
+  },
+  {
+    "type": "condition.selected",
+    "condition": "verificationCompleted",
+    "candidates": [
+      "verificationCompleted"
+    ],
+    "sequence": 11
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "verifyCustomer",
+    "candidates": [
+      "verifyCustomer"
+    ],
+    "sequence": 12
+  },
+  {
+    "type": "stack.push",
+    "affordance": "verifyCustomer",
+    "result": null,
+    "stack": [
+      "activateCustomer",
+      "verifyCustomer"
+    ],
+    "sequence": 13
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "verifyCustomer",
+    "result": "SUCCESS",
+    "stack": [
+      "activateCustomer"
+    ],
+    "sequence": 14
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "activateCustomer",
+    "result": "SUCCESS",
+    "stack": [],
+    "sequence": 15
+  }
+]

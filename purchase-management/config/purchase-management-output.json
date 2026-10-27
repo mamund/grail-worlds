@@ -1,0 +1,197 @@
+{
+  "pursuitId": "4e5cb1ee-171f-4774-8c6b-29f2d5d08962",
+  "goal": "purchaseRecorded",
+  "reached": true,
+  "timing": {
+    "durationMs": 3482.498929
+  },
+  "worldstate": {
+    "purchaseLoaded": true,
+    "policyChecked": true,
+    "purchaseReviewed": true,
+    "purchaseProcessed": true,
+    "purchaseRecorded": true
+  },
+  "observations": [
+    {
+      "phase": "forward",
+      "pursuitId": "4e5cb1ee-171f-4774-8c6b-29f2d5d08962",
+      "invocation": {
+        "id": "1739485f-933b-4eac-8522-ed7543b4b604",
+        "affordance": "loadPurchaseRequest",
+        "timestamp": "2026-10-27T16:43:03.993Z",
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:3002/purchases/P1042",
+          "headers": {
+            "Grail-Pursuit-Id": "4e5cb1ee-171f-4774-8c6b-29f2d5d08962",
+            "Grail-Invocation-Id": "1739485f-933b-4eac-8522-ed7543b4b604"
+          },
+          "body": null
+        }
+      },
+      "timing": {
+        "durationMs": 49.336696
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "connection": "keep-alive",
+          "content-type": "application/json",
+          "date": "Tue, 27 Oct 2026 16:43:04 GMT",
+          "keep-alive": "timeout=5",
+          "transfer-encoding": "chunked"
+        },
+        "body": {
+          "id": "P1042",
+          "department": "Engineering",
+          "description": "Replacement development workstation",
+          "amount": 2450,
+          "policyGuidance": "Above $1,000: human reviewer should check budget and justification.",
+          "review": {
+            "status": "rejected",
+            "note": ""
+          },
+          "processingStatus": "request-closed-rejected",
+          "recorded": {
+            "recordId": "REC-P1042",
+            "status": "rejected",
+            "processingStatus": "request-closed-rejected"
+          }
+        }
+      },
+      "outputs": {
+        "purchaseId": "P1042",
+        "amount": 2450,
+        "description": "Replacement development workstation",
+        "department": "Engineering"
+      },
+      "result": "SUCCESS"
+    },
+    {
+      "phase": "forward",
+      "pursuitId": "4e5cb1ee-171f-4774-8c6b-29f2d5d08962",
+      "invocation": {
+        "id": "cf465533-7635-43a1-af58-9778bffec271",
+        "affordance": "checkPurchasePolicy",
+        "timestamp": "2026-10-27T16:43:04.043Z",
+        "module": "./capabilities/purchase.mjs",
+        "function": "checkPurchasePolicy",
+        "inputs": {
+          "purchaseId": "P1042"
+        }
+      },
+      "timing": {
+        "durationMs": 6.487413
+      },
+      "response": {
+        "result": {
+          "guidance": "Above $1,000: human reviewer should check budget and justification."
+        }
+      },
+      "outputs": {
+        "policyGuidance": "Above $1,000: human reviewer should check budget and justification."
+      },
+      "result": "SUCCESS"
+    },
+    {
+      "phase": "forward",
+      "pursuitId": "4e5cb1ee-171f-4774-8c6b-29f2d5d08962",
+      "invocation": {
+        "id": "68c58ca2-261e-4bb9-bc1c-a1e9bcf0983c",
+        "affordance": "reviewPurchase",
+        "timestamp": "2026-10-27T16:43:04.050Z",
+        "command": "node",
+        "args": [
+          "./capabilities/review.mjs"
+        ],
+        "inputs": {
+          "purchaseId": "P1042",
+          "policyGuidance": "Above $1,000: human reviewer should check budget and justification."
+        }
+      },
+      "timing": {
+        "durationMs": 3416.227715
+      },
+      "response": {
+        "exitCode": 0,
+        "stdout": {
+          "reviewStatus": "deferred",
+          "reviewNote": ""
+        },
+        "stderr": "\nPurchase P1042: Replacement development workstation\nDepartment: Engineering; amount: $2450.00\nPolicy: Above $1,000: human reviewer should check budget and justification.\n1. Approve  2. Reject  3. Defer\nReview decision [1-3]: 3\nReview note (optional): \n"
+      },
+      "outputs": {
+        "reviewStatus": "deferred",
+        "reviewNote": ""
+      },
+      "result": "SUCCESS"
+    },
+    {
+      "phase": "forward",
+      "pursuitId": "4e5cb1ee-171f-4774-8c6b-29f2d5d08962",
+      "invocation": {
+        "id": "03953e92-0900-4074-8c7a-bdbbb2762914",
+        "affordance": "processPurchase",
+        "timestamp": "2026-10-27T16:43:07.467Z",
+        "module": "./capabilities/purchase.mjs",
+        "function": "processPurchase",
+        "inputs": {
+          "purchaseId": "P1042"
+        }
+      },
+      "timing": {
+        "durationMs": 1.183241
+      },
+      "response": {
+        "result": {
+          "processingStatus": "follow-up-pending"
+        }
+      },
+      "outputs": {
+        "processingStatus": "follow-up-pending"
+      },
+      "result": "SUCCESS"
+    },
+    {
+      "phase": "forward",
+      "pursuitId": "4e5cb1ee-171f-4774-8c6b-29f2d5d08962",
+      "invocation": {
+        "id": "963de38b-0ff4-40f1-8354-a9bbc647069b",
+        "affordance": "recordPurchaseResult",
+        "timestamp": "2026-10-27T16:43:07.468Z",
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:3002/purchases/P1042/record",
+          "headers": {
+            "Grail-Pursuit-Id": "4e5cb1ee-171f-4774-8c6b-29f2d5d08962",
+            "Grail-Invocation-Id": "963de38b-0ff4-40f1-8354-a9bbc647069b"
+          },
+          "body": null
+        }
+      },
+      "timing": {
+        "durationMs": 5.684679
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "connection": "keep-alive",
+          "content-type": "application/json",
+          "date": "Tue, 27 Oct 2026 16:43:07 GMT",
+          "keep-alive": "timeout=5",
+          "transfer-encoding": "chunked"
+        },
+        "body": {
+          "recordId": "REC-P1042",
+          "status": "deferred"
+        }
+      },
+      "outputs": {
+        "recordId": "REC-P1042",
+        "recordedStatus": "deferred"
+      },
+      "result": "SUCCESS"
+    }
+  ]
+}

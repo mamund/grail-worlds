@@ -1,0 +1,264 @@
+{
+  "pursuitId": "e82c5a21-ff11-4254-bf78-d3c4cd304089",
+  "goal": "customerOnboarded",
+  "reached": true,
+  "timing": {
+    "durationMs": 7.544149000000004
+  },
+  "worldstate": {
+    "onboardingStarted": true,
+    "customerProfileCreated": true,
+    "customerEmailSet": true,
+    "customerPhoneNumberSet": true,
+    "customerAddressSet": true,
+    "customerEmailVerified": true,
+    "customerPhoneVerified": true,
+    "termsAccepted": true,
+    "customerOnboarded": true
+  },
+  "observations": [
+    {
+      "phase": "forward",
+      "pursuitId": "e82c5a21-ff11-4254-bf78-d3c4cd304089",
+      "invocation": {
+        "id": "95f329c7-e470-4b24-815e-0f04a398cda0",
+        "affordance": "startOnboarding",
+        "timestamp": "2026-10-27T16:20:10.679Z",
+        "module": "./capabilities/onboarding.js",
+        "function": "startOnboarding",
+        "inputs": {
+          "name": "Ada Lovelace"
+        }
+      },
+      "timing": {
+        "durationMs": 1.465174
+      },
+      "response": {
+        "result": {
+          "onboardingId": "ONB-100"
+        }
+      },
+      "outputs": {
+        "onboardingId": "ONB-100"
+      },
+      "result": "SUCCESS"
+    },
+    {
+      "phase": "forward",
+      "pursuitId": "e82c5a21-ff11-4254-bf78-d3c4cd304089",
+      "invocation": {
+        "id": "9ea92eaa-1886-4c97-bdfc-696b43443d0d",
+        "affordance": "createCustomerProfile",
+        "timestamp": "2026-10-27T16:20:10.681Z",
+        "module": "./capabilities/onboarding.js",
+        "function": "createCustomerProfile",
+        "inputs": {
+          "onboardingId": "ONB-100"
+        }
+      },
+      "timing": {
+        "durationMs": 0.228788
+      },
+      "response": {
+        "result": {
+          "customerId": "CUS-100"
+        }
+      },
+      "outputs": {
+        "customerId": "CUS-100"
+      },
+      "result": "SUCCESS"
+    },
+    {
+      "phase": "forward",
+      "pursuitId": "e82c5a21-ff11-4254-bf78-d3c4cd304089",
+      "invocation": {
+        "id": "459dc14d-c00f-42bc-a1a8-d9bd6c9dbbf3",
+        "affordance": "acceptTerms",
+        "timestamp": "2026-10-27T16:20:10.682Z",
+        "module": "./capabilities/onboarding.js",
+        "function": "acceptTerms",
+        "inputs": {
+          "customerId": "CUS-100",
+          "termsVersion": "2026-01"
+        }
+      },
+      "timing": {
+        "durationMs": 0.178832
+      },
+      "response": {
+        "result": {
+          "acceptedTermsVersion": "2026-01"
+        }
+      },
+      "outputs": {
+        "acceptedTermsVersion": "2026-01"
+      },
+      "result": "SUCCESS"
+    },
+    {
+      "phase": "forward",
+      "pursuitId": "e82c5a21-ff11-4254-bf78-d3c4cd304089",
+      "invocation": {
+        "id": "a5e27d36-4b34-4a6c-a181-2a4fc6d03a05",
+        "affordance": "setCustomerDetails",
+        "timestamp": "2026-10-27T16:20:10.682Z",
+        "module": "./capabilities/onboarding.js",
+        "function": "setCustomerDetails",
+        "inputs": {
+          "customerId": "CUS-100",
+          "email": "ada@example.test",
+          "phone": "+1-555-0100",
+          "address": "12 Example Lane"
+        }
+      },
+      "timing": {
+        "durationMs": 0.178664
+      },
+      "response": {
+        "result": {
+          "emailVerificationId": "EMAIL-100",
+          "phoneVerificationId": "PHONE-100"
+        }
+      },
+      "outputs": {
+        "emailVerificationId": "EMAIL-100",
+        "phoneVerificationId": "PHONE-100"
+      },
+      "result": "SUCCESS"
+    },
+    {
+      "phase": "forward",
+      "pursuitId": "e82c5a21-ff11-4254-bf78-d3c4cd304089",
+      "invocation": {
+        "id": "d9b5087f-992d-4ea0-8adb-6e7b2a8f00dd",
+        "affordance": "verifyCustomerPhone",
+        "timestamp": "2026-10-27T16:20:10.683Z",
+        "module": "./capabilities/onboarding.js",
+        "function": "verifyCustomerPhone",
+        "inputs": {
+          "customerId": "CUS-100",
+          "phoneVerificationId": "PHONE-100"
+        }
+      },
+      "timing": {
+        "durationMs": 0.187645
+      },
+      "response": {
+        "result": {
+          "verifiedPhone": "+1-555-0100"
+        }
+      },
+      "outputs": {
+        "verifiedPhone": "+1-555-0100"
+      },
+      "result": "SUCCESS"
+    },
+    {
+      "phase": "forward",
+      "pursuitId": "e82c5a21-ff11-4254-bf78-d3c4cd304089",
+      "invocation": {
+        "id": "c83b0be4-bcf7-4f28-b48e-8f7561e146f5",
+        "affordance": "verifyEmailUnavailable",
+        "timestamp": "2026-10-27T16:20:10.683Z",
+        "module": "./capabilities/onboarding.js",
+        "function": "verifyEmailUnavailable",
+        "inputs": {
+          "customerId": "CUS-100",
+          "emailVerificationId": "EMAIL-100"
+        }
+      },
+      "timing": {
+        "durationMs": 0.216538
+      },
+      "response": {
+        "error": "Email verification provider is unavailable"
+      },
+      "outputs": {},
+      "result": "FAIL"
+    },
+    {
+      "phase": "forward",
+      "pursuitId": "e82c5a21-ff11-4254-bf78-d3c4cd304089",
+      "invocation": {
+        "id": "4a7ebc57-8d49-49f7-9e98-e1eccd80594d",
+        "affordance": "verifyCustomerEmail",
+        "timestamp": "2026-10-27T16:20:10.684Z",
+        "module": "./capabilities/onboarding.js",
+        "function": "verifyCustomerEmail",
+        "inputs": {
+          "customerId": "CUS-100",
+          "emailVerificationId": "EMAIL-100"
+        }
+      },
+      "timing": {
+        "durationMs": 0.206545
+      },
+      "response": {
+        "result": {
+          "verifiedEmail": "ada@example.test"
+        }
+      },
+      "outputs": {
+        "verifiedEmail": "ada@example.test"
+      },
+      "result": "SUCCESS"
+    },
+    {
+      "phase": "forward",
+      "pursuitId": "e82c5a21-ff11-4254-bf78-d3c4cd304089",
+      "invocation": {
+        "id": "054107f1-a36a-49e3-b95e-2979d143d337",
+        "affordance": "onboardCustomerUnavailable",
+        "timestamp": "2026-10-27T16:20:10.685Z",
+        "module": "./capabilities/onboarding.js",
+        "function": "onboardCustomerUnavailable",
+        "inputs": {
+          "onboardingId": "ONB-100",
+          "customerId": "CUS-100"
+        }
+      },
+      "timing": {
+        "durationMs": 0.163583
+      },
+      "response": {
+        "error": "Primary onboarding provider is unavailable"
+      },
+      "outputs": {},
+      "result": "FAIL"
+    },
+    {
+      "phase": "forward",
+      "pursuitId": "e82c5a21-ff11-4254-bf78-d3c4cd304089",
+      "invocation": {
+        "id": "60cc1913-ac8d-4846-a906-53b6c2eaa57b",
+        "affordance": "onboardCustomer",
+        "timestamp": "2026-10-27T16:20:10.685Z",
+        "module": "./capabilities/onboarding.js",
+        "function": "onboardCustomer",
+        "inputs": {
+          "onboardingId": "ONB-100",
+          "customerId": "CUS-100"
+        }
+      },
+      "timing": {
+        "durationMs": 0.185299
+      },
+      "response": {
+        "result": {
+          "customerId": "CUS-100",
+          "onboardingId": "ONB-100",
+          "status": "onboarded",
+          "customerName": "Ada Lovelace"
+        }
+      },
+      "outputs": {
+        "customerId": "CUS-100",
+        "onboardingId": "ONB-100",
+        "status": "onboarded",
+        "customerName": "Ada Lovelace"
+      },
+      "result": "SUCCESS"
+    }
+  ]
+}

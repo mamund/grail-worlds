@@ -1,0 +1,36 @@
+{
+  "establishA": {
+    "id": "aff-establish-a",
+    "action": "establishA",
+    "type": "task",
+    "preconditions": [
+      "conditionB"
+    ],
+    "inputs": {},
+    "effects": [
+      "conditionA"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/establish.mjs",
+      "function": "establishA"
+    }
+  },
+  "establishB": {
+    "id": "aff-establish-b",
+    "action": "establishB",
+    "type": "task",
+    "preconditions": [
+      "conditionA"
+    ],
+    "inputs": {},
+    "effects": [
+      "conditionB"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/establish.mjs",
+      "function": "establishB"
+    }
+  }
+}

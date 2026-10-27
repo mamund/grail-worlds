@@ -19,7 +19,7 @@
   },
   {
     "type": "condition.selected",
-    "condition": "customerAddressSet",
+    "condition": "termsAccepted",
     "candidates": [
       "customerEmailVerified",
       "customerPhoneVerified",
@@ -30,19 +30,19 @@
   },
   {
     "type": "affordance.selected",
-    "affordance": "setCustomerDetails",
+    "affordance": "acceptTerms",
     "candidates": [
-      "setCustomerDetails"
+      "acceptTerms"
     ],
     "sequence": 4
   },
   {
     "type": "stack.push",
-    "affordance": "setCustomerDetails",
+    "affordance": "acceptTerms",
     "result": null,
     "stack": [
       "onboardCustomerUnavailable",
-      "setCustomerDetails"
+      "acceptTerms"
     ],
     "sequence": 5
   },
@@ -68,7 +68,7 @@
     "result": null,
     "stack": [
       "onboardCustomerUnavailable",
-      "setCustomerDetails",
+      "acceptTerms",
       "createCustomerProfile"
     ],
     "sequence": 8
@@ -95,7 +95,7 @@
     "result": null,
     "stack": [
       "onboardCustomerUnavailable",
-      "setCustomerDetails",
+      "acceptTerms",
       "createCustomerProfile",
       "startOnboarding"
     ],
@@ -107,7 +107,7 @@
     "result": "SUCCESS",
     "stack": [
       "onboardCustomerUnavailable",
-      "setCustomerDetails",
+      "acceptTerms",
       "createCustomerProfile"
     ],
     "sequence": 12
@@ -118,13 +118,13 @@
     "result": "SUCCESS",
     "stack": [
       "onboardCustomerUnavailable",
-      "setCustomerDetails"
+      "acceptTerms"
     ],
     "sequence": 13
   },
   {
     "type": "stack.pop",
-    "affordance": "setCustomerDetails",
+    "affordance": "acceptTerms",
     "result": "SUCCESS",
     "stack": [
       "onboardCustomerUnavailable"
@@ -133,35 +133,35 @@
   },
   {
     "type": "condition.selected",
-    "condition": "termsAccepted",
+    "condition": "customerAddressSet",
     "candidates": [
       "customerEmailVerified",
       "customerPhoneVerified",
-      "termsAccepted"
+      "customerAddressSet"
     ],
     "sequence": 15
   },
   {
     "type": "affordance.selected",
-    "affordance": "acceptTerms",
+    "affordance": "setCustomerDetails",
     "candidates": [
-      "acceptTerms"
+      "setCustomerDetails"
     ],
     "sequence": 16
   },
   {
     "type": "stack.push",
-    "affordance": "acceptTerms",
+    "affordance": "setCustomerDetails",
     "result": null,
     "stack": [
       "onboardCustomerUnavailable",
-      "acceptTerms"
+      "setCustomerDetails"
     ],
     "sequence": 17
   },
   {
     "type": "stack.pop",
-    "affordance": "acceptTerms",
+    "affordance": "setCustomerDetails",
     "result": "SUCCESS",
     "stack": [
       "onboardCustomerUnavailable"
@@ -170,7 +170,7 @@
   },
   {
     "type": "condition.selected",
-    "condition": "customerEmailVerified",
+    "condition": "customerPhoneVerified",
     "candidates": [
       "customerEmailVerified",
       "customerPhoneVerified"
@@ -179,27 +179,26 @@
   },
   {
     "type": "affordance.selected",
-    "affordance": "verifyEmailUnavailable",
+    "affordance": "verifyCustomerPhone",
     "candidates": [
-      "verifyCustomerEmail",
-      "verifyEmailUnavailable"
+      "verifyCustomerPhone"
     ],
     "sequence": 20
   },
   {
     "type": "stack.push",
-    "affordance": "verifyEmailUnavailable",
+    "affordance": "verifyCustomerPhone",
     "result": null,
     "stack": [
       "onboardCustomerUnavailable",
-      "verifyEmailUnavailable"
+      "verifyCustomerPhone"
     ],
     "sequence": 21
   },
   {
     "type": "stack.pop",
-    "affordance": "verifyEmailUnavailable",
-    "result": "FAIL",
+    "affordance": "verifyCustomerPhone",
+    "result": "SUCCESS",
     "stack": [
       "onboardCustomerUnavailable"
     ],
@@ -209,33 +208,33 @@
     "type": "condition.selected",
     "condition": "customerEmailVerified",
     "candidates": [
-      "customerEmailVerified",
-      "customerPhoneVerified"
+      "customerEmailVerified"
     ],
     "sequence": 23
   },
   {
     "type": "affordance.selected",
-    "affordance": "verifyCustomerEmail",
+    "affordance": "verifyEmailUnavailable",
     "candidates": [
-      "verifyCustomerEmail"
+      "verifyCustomerEmail",
+      "verifyEmailUnavailable"
     ],
     "sequence": 24
   },
   {
     "type": "stack.push",
-    "affordance": "verifyCustomerEmail",
+    "affordance": "verifyEmailUnavailable",
     "result": null,
     "stack": [
       "onboardCustomerUnavailable",
-      "verifyCustomerEmail"
+      "verifyEmailUnavailable"
     ],
     "sequence": 25
   },
   {
     "type": "stack.pop",
-    "affordance": "verifyCustomerEmail",
-    "result": "SUCCESS",
+    "affordance": "verifyEmailUnavailable",
+    "result": "FAIL",
     "stack": [
       "onboardCustomerUnavailable"
     ],
@@ -243,33 +242,33 @@
   },
   {
     "type": "condition.selected",
-    "condition": "customerPhoneVerified",
+    "condition": "customerEmailVerified",
     "candidates": [
-      "customerPhoneVerified"
+      "customerEmailVerified"
     ],
     "sequence": 27
   },
   {
     "type": "affordance.selected",
-    "affordance": "verifyCustomerPhone",
+    "affordance": "verifyCustomerEmail",
     "candidates": [
-      "verifyCustomerPhone"
+      "verifyCustomerEmail"
     ],
     "sequence": 28
   },
   {
     "type": "stack.push",
-    "affordance": "verifyCustomerPhone",
+    "affordance": "verifyCustomerEmail",
     "result": null,
     "stack": [
       "onboardCustomerUnavailable",
-      "verifyCustomerPhone"
+      "verifyCustomerEmail"
     ],
     "sequence": 29
   },
   {
     "type": "stack.pop",
-    "affordance": "verifyCustomerPhone",
+    "affordance": "verifyCustomerEmail",
     "result": "SUCCESS",
     "stack": [
       "onboardCustomerUnavailable"

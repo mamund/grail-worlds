@@ -1,0 +1,177 @@
+[
+  {
+    "type": "affordance.selected",
+    "affordance": "recordPurchaseResult",
+    "candidates": [
+      "recordPurchaseResult"
+    ],
+    "sequence": 1
+  },
+  {
+    "type": "stack.push",
+    "affordance": "recordPurchaseResult",
+    "result": null,
+    "stack": [
+      "recordPurchaseResult"
+    ],
+    "sequence": 2
+  },
+  {
+    "type": "condition.selected",
+    "condition": "purchaseProcessed",
+    "candidates": [
+      "purchaseProcessed"
+    ],
+    "sequence": 3
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "processPurchase",
+    "candidates": [
+      "processPurchase"
+    ],
+    "sequence": 4
+  },
+  {
+    "type": "stack.push",
+    "affordance": "processPurchase",
+    "result": null,
+    "stack": [
+      "recordPurchaseResult",
+      "processPurchase"
+    ],
+    "sequence": 5
+  },
+  {
+    "type": "condition.selected",
+    "condition": "purchaseReviewed",
+    "candidates": [
+      "purchaseReviewed"
+    ],
+    "sequence": 6
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "reviewPurchase",
+    "candidates": [
+      "reviewPurchase"
+    ],
+    "sequence": 7
+  },
+  {
+    "type": "stack.push",
+    "affordance": "reviewPurchase",
+    "result": null,
+    "stack": [
+      "recordPurchaseResult",
+      "processPurchase",
+      "reviewPurchase"
+    ],
+    "sequence": 8
+  },
+  {
+    "type": "condition.selected",
+    "condition": "purchaseLoaded",
+    "candidates": [
+      "purchaseLoaded",
+      "policyChecked"
+    ],
+    "sequence": 9
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "loadPurchaseRequest",
+    "candidates": [
+      "loadPurchaseRequest"
+    ],
+    "sequence": 10
+  },
+  {
+    "type": "stack.push",
+    "affordance": "loadPurchaseRequest",
+    "result": null,
+    "stack": [
+      "recordPurchaseResult",
+      "processPurchase",
+      "reviewPurchase",
+      "loadPurchaseRequest"
+    ],
+    "sequence": 11
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "loadPurchaseRequest",
+    "result": "SUCCESS",
+    "stack": [
+      "recordPurchaseResult",
+      "processPurchase",
+      "reviewPurchase"
+    ],
+    "sequence": 12
+  },
+  {
+    "type": "condition.selected",
+    "condition": "policyChecked",
+    "candidates": [
+      "policyChecked"
+    ],
+    "sequence": 13
+  },
+  {
+    "type": "affordance.selected",
+    "affordance": "checkPurchasePolicy",
+    "candidates": [
+      "checkPurchasePolicy"
+    ],
+    "sequence": 14
+  },
+  {
+    "type": "stack.push",
+    "affordance": "checkPurchasePolicy",
+    "result": null,
+    "stack": [
+      "recordPurchaseResult",
+      "processPurchase",
+      "reviewPurchase",
+      "checkPurchasePolicy"
+    ],
+    "sequence": 15
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "checkPurchasePolicy",
+    "result": "SUCCESS",
+    "stack": [
+      "recordPurchaseResult",
+      "processPurchase",
+      "reviewPurchase"
+    ],
+    "sequence": 16
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "reviewPurchase",
+    "result": "SUCCESS",
+    "stack": [
+      "recordPurchaseResult",
+      "processPurchase"
+    ],
+    "sequence": 17
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "processPurchase",
+    "result": "SUCCESS",
+    "stack": [
+      "recordPurchaseResult"
+    ],
+    "sequence": 18
+  },
+  {
+    "type": "stack.pop",
+    "affordance": "recordPurchaseResult",
+    "result": "SUCCESS",
+    "stack": [],
+    "sequence": 19
+  }
+]

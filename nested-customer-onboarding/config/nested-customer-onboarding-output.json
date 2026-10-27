@@ -1,0 +1,247 @@
+{
+  "pursuitId": "1572fc63-31d8-4124-b705-925192061760",
+  "goal": "onboardingProcessed",
+  "reached": true,
+  "timing": {
+    "durationMs": 43.15218200000001
+  },
+  "worldstate": {
+    "customerCreated": true,
+    "accountPrepared": true,
+    "verificationCompleted": true,
+    "onboardingProcessed": true
+  },
+  "observations": [
+    {
+      "phase": "forward",
+      "pursuitId": "1572fc63-31d8-4124-b705-925192061760",
+      "invocation": {
+        "id": "10efc064-2165-4561-bf90-b394a2aa4e7f",
+        "affordance": "createCustomer",
+        "timestamp": "2026-10-27T16:26:57.002Z",
+        "module": "./capabilities/create-customer.mjs",
+        "function": "execute",
+        "inputs": {
+          "customerId": "C100"
+        }
+      },
+      "timing": {
+        "durationMs": 1.103983
+      },
+      "response": {
+        "result": {
+          "customerId": "C100",
+          "created": true
+        }
+      },
+      "outputs": {
+        "customerId": "C100"
+      },
+      "result": "SUCCESS"
+    },
+    {
+      "phase": "forward",
+      "pursuitId": "1572fc63-31d8-4124-b705-925192061760",
+      "invocation": {
+        "id": "ee346d08-985a-488b-93ef-02cd53a5adb3",
+        "affordance": "prepareAccount",
+        "timestamp": "2026-10-27T16:26:57.003Z",
+        "module": "./capabilities/prepare-account.mjs",
+        "function": "execute",
+        "inputs": {
+          "customerId": "C100"
+        }
+      },
+      "timing": {
+        "durationMs": 1.804793
+      },
+      "response": {
+        "result": {
+          "accountId": "A-C100",
+          "prepared": true
+        }
+      },
+      "outputs": {
+        "accountId": "A-C100"
+      },
+      "result": "SUCCESS"
+    },
+    {
+      "phase": "forward",
+      "pursuitId": "1572fc63-31d8-4124-b705-925192061760",
+      "invocation": {
+        "id": "cec2c9a8-1036-4955-85e2-20207e36d6ff",
+        "affordance": "verifyCustomer",
+        "timestamp": "2026-10-27T16:26:57.006Z",
+        "module": "./capabilities/verify-customer.mjs",
+        "function": "execute",
+        "inputs": {
+          "customerId": "C100"
+        }
+      },
+      "timing": {
+        "durationMs": 36.995074
+      },
+      "response": {
+        "result": {
+          "customerId": "C100",
+          "verificationCompleted": true,
+          "verificationStatus": "REJECTED",
+          "childReached": true,
+          "childGoal": "customerVerified",
+          "childWorldstate": {
+            "customerLocated": true,
+            "identityChecked": true,
+            "accountChecked": true,
+            "customerVerified": true
+          },
+          "childObservations": [
+            {
+              "phase": "forward",
+              "pursuitId": "04238207-7edb-4fcb-bf09-ddd5d038277e",
+              "invocation": {
+                "id": "d00a009c-f705-4e2c-8b0b-3cd40089de17",
+                "affordance": "lookupCustomer",
+                "timestamp": "2026-10-27T16:26:57.039Z",
+                "module": "./capabilities/lookup-customer.mjs",
+                "function": "execute",
+                "inputs": {
+                  "customerId": "C100"
+                }
+              },
+              "timing": {
+                "durationMs": 0.754719
+              },
+              "response": {
+                "result": {
+                  "customerId": "C100",
+                  "found": true
+                }
+              },
+              "outputs": {
+                "customerId": "C100"
+              },
+              "result": "SUCCESS"
+            },
+            {
+              "phase": "forward",
+              "pursuitId": "04238207-7edb-4fcb-bf09-ddd5d038277e",
+              "invocation": {
+                "id": "060256de-78d3-4297-900e-2fd64029f951",
+                "affordance": "checkIdentity",
+                "timestamp": "2026-10-27T16:26:57.040Z",
+                "module": "./capabilities/check-identity.mjs",
+                "function": "execute",
+                "inputs": {
+                  "customerId": "C100"
+                }
+              },
+              "timing": {
+                "durationMs": 0.669319
+              },
+              "response": {
+                "result": {
+                  "identityStatus": "REJECTED"
+                }
+              },
+              "outputs": {
+                "identityStatus": "REJECTED"
+              },
+              "result": "SUCCESS"
+            },
+            {
+              "phase": "forward",
+              "pursuitId": "04238207-7edb-4fcb-bf09-ddd5d038277e",
+              "invocation": {
+                "id": "7f760c49-1734-4fc6-b9ba-e23a572bd870",
+                "affordance": "checkAccount",
+                "timestamp": "2026-10-27T16:26:57.041Z",
+                "module": "./capabilities/check-account.mjs",
+                "function": "execute",
+                "inputs": {
+                  "customerId": "C100"
+                }
+              },
+              "timing": {
+                "durationMs": 0.613633
+              },
+              "response": {
+                "result": {
+                  "accountStatus": "OPEN"
+                }
+              },
+              "outputs": {
+                "accountStatus": "OPEN"
+              },
+              "result": "SUCCESS"
+            },
+            {
+              "phase": "forward",
+              "pursuitId": "04238207-7edb-4fcb-bf09-ddd5d038277e",
+              "invocation": {
+                "id": "7e62ca61-fb90-4ca6-bd59-3e20675ab277",
+                "affordance": "completeVerification",
+                "timestamp": "2026-10-27T16:26:57.042Z",
+                "module": "./capabilities/complete-verification.mjs",
+                "function": "execute",
+                "inputs": {
+                  "customerId": "C100",
+                  "identityStatus": "REJECTED",
+                  "accountStatus": "OPEN"
+                }
+              },
+              "timing": {
+                "durationMs": 0.51937
+              },
+              "response": {
+                "result": {
+                  "customerId": "C100",
+                  "verificationStatus": "REJECTED"
+                }
+              },
+              "outputs": {
+                "verificationStatus": "REJECTED"
+              },
+              "result": "SUCCESS"
+            }
+          ]
+        }
+      },
+      "outputs": {
+        "verificationCompleted": true,
+        "childReached": true,
+        "verificationStatus": "REJECTED"
+      },
+      "result": "SUCCESS"
+    },
+    {
+      "phase": "forward",
+      "pursuitId": "1572fc63-31d8-4124-b705-925192061760",
+      "invocation": {
+        "id": "2754e433-9d5e-42c7-816c-98e8c5f9ac86",
+        "affordance": "activateCustomer",
+        "timestamp": "2026-10-27T16:26:57.043Z",
+        "module": "./capabilities/activate-customer.mjs",
+        "function": "execute",
+        "inputs": {
+          "customerId": "C100",
+          "verificationCompleted": true,
+          "verificationStatus": "REJECTED"
+        }
+      },
+      "timing": {
+        "durationMs": 0.680335
+      },
+      "response": {
+        "result": {
+          "customerId": "C100",
+          "activationStatus": "DENIED"
+        }
+      },
+      "outputs": {
+        "activationStatus": "DENIED"
+      },
+      "result": "SUCCESS"
+    }
+  ]
+}
