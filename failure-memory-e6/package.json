@@ -1,0 +1,12 @@
+{
+  "name": "grail-world-failure-memory-e6",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=20"},
+  "scripts": {
+    "test": "node verify-e6.js",
+    "test:failure": "node api-run.js failure",
+    "test:control": "node api-run.js control"
+  },
+  "dependencies": {"@mamund/grail": "0.3.0-beta.1"}
+}

@@ -1,0 +1,24 @@
+{
+  "completeWork": {
+    "id": "e6-complete", "action": "completeWork", "type": "task",
+    "preconditions": ["conditionA", "conditionB"],
+    "inputs": {}, "effects": ["workCompleted"],
+    "binding": {"protocol": "node", "module": "./capabilities/actions.mjs", "function": "completeWork"}
+  },
+  "sharedProducer": {
+    "id": "e6-shared", "action": "sharedProducer", "type": "task",
+    "preconditions": [], "inputs": {"mode": "$inputs.mode"},
+    "effects": ["conditionA", "conditionB"],
+    "binding": {"protocol": "node", "module": "./capabilities/actions.mjs", "function": "sharedProducer"}
+  },
+  "alternativeA": {
+    "id": "e6-alt-a", "action": "alternativeA", "type": "task",
+    "preconditions": [], "inputs": {}, "effects": ["conditionA"],
+    "binding": {"protocol": "node", "module": "./capabilities/actions.mjs", "function": "alternativeA"}
+  },
+  "alternativeB": {
+    "id": "e6-alt-b", "action": "alternativeB", "type": "task",
+    "preconditions": [], "inputs": {}, "effects": ["conditionB"],
+    "binding": {"protocol": "node", "module": "./capabilities/actions.mjs", "function": "alternativeB"}
+  }
+}
