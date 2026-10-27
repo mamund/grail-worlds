@@ -1,0 +1,21 @@
+{
+  "recordCreation": {
+    "id": "aff-record-creation",
+    "action": "recordCreation",
+    "type": "task",
+    "preconditions": [],
+    "inputs": {
+      "recordId": "$inputs.recordId",
+      "mode": "$inputs.mode",
+      "storePath": "$inputs.storePath"
+    },
+    "effects": [
+      "recordCreated"
+    ],
+    "binding": {
+      "protocol": "node",
+      "module": "./capabilities/record.mjs",
+      "function": "recordCreation"
+    }
+  }
+}
